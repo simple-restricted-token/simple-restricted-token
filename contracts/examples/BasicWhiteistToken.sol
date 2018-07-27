@@ -2,8 +2,6 @@ pragma solidity 0.4.24;
 import "../SimpleRestrictedToken.sol";
 import "zeppelin-solidity/contracts/access/Whitelist.sol";
 
-/// @title Example of a whitelist token
-/// @notice TokenSoft Inc
 contract BasicWhitelistToken is SimpleRestrictedToken, Whitelist {
   function detectTransferRestriction (address from, address to, uint value)
     public
