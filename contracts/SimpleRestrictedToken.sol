@@ -1,4 +1,4 @@
-pragma solidity 0.4.24;
+pragma solidity ^0.4.24;
 import "zeppelin-solidity/contracts/tokens/ERC20/StandardToken.sol";
 
 /// @title Reference implementation for the SRS-20 token
