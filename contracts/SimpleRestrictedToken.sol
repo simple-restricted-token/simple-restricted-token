@@ -21,7 +21,7 @@ contract SimpleRestrictedToken is StandardToken {
         
     /// @notice Returns a human-readable message for a given restriction code
     /// @param {uint} restrictionCode - Identifier for looking up a message
-    /// @return {string} message - Text describing the infracted restriction
+    /// @return {string} message - Text showing the restriction's reasoning
     function messageForTransferRestriction (uint restrictionCode)
         public
         view
