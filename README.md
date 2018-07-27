@@ -33,14 +33,18 @@ A widely adopted pattern for handling rejections and messaging within token tran
 
 As a standard, SRS-20 is dead simple to implement.
 
-It adds _just one_ public function `detectTransferRestriction()` on top of the tried and true ERC-20 standard.
+It adds a public variable `restrictions` and _just one_ public function `detectTransferRestriction()` on top of the tried and true ERC-20 standard.
 
 ```solidity
-/** @dev
-  * @param {address} to - Receiving address
-  * @param {address} from - Sending address
-  * @param {uint} value - Amount tokens being transferred
-  */
+/// @notice Stores human-readable restriction messages, mapped by uint codes
+/// @dev 0 is always mapped to 'SUCCESS'
+mapping (uint => string) public restrictions
+
+/// @notice Detects if a transfer will be rejected and if so returns a corresponding code
+/// @param {address} to - Receiving address
+/// @param {address} from - Sending address
+/// @param {uint} value - Amount tokens being transferred
+/// @return {uint} retrictionCode - code by which to lookup the offending restriction
 function detectTransferRestriction(address to, address from, uint value)
   public
   constant
