@@ -17,15 +17,15 @@ Furthermore, standards adoption amongst token issuers has the potential to evolv
 
 However, we feel the current trend of ~~proposing~~ marketing token standards as solutions for individual use-cases poses a threat to future interoperability within the tokenized ecosystem.
 
-Specifically this compromises the usuability of security tokens and the exchanges that wish to support them.
+Specifically this compromises the usability of security tokens and the exchanges that wish to support them.
 
 It is our belief that a simplistic underlying standard, which may be easily extended for varying compliance needs, is a far more forward-thinking approach.
 
 This design gives greater freedom / upgradability to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
 
-Additionally, we see fit to provide a framework by which human-readable messages may be returned when token transfers are rejected.
+Additionally, we see fit to provide a framework by which human-readable messages may be returned when token transfers are reverted.
 
-Visibility into _why_ a token's transfer was rejected is of equal importance to the successful enforcement of the transfer restriction itself.
+Visibility into _why_ a token's transfer was reverted is of equal importance to the successful enforcement of the transfer restriction itself.
 
 A widely adopted pattern for handling rejections and messaging within token transfers will highly convenience the exchanges, wallets, and interface builders of the future.
 
@@ -36,7 +36,7 @@ As a standard, SRS-20 is dead simple to implement.
 It adds _just two_ public functions on top of the tried and true ERC-20 standard.
 
 ```solidity
-/// @notice Detects if a transfer will be rejected and if so returns an appropriate reference code
+/// @notice Detects if a transfer will be reverted and if so returns an appropriate restriction code
 /// @param {address} from - Sending address
 /// @param {address} to - Receiving address
 /// @param {uint} value - Amount of tokens being transferred
@@ -68,18 +68,30 @@ The logic of `detectTransferRestriction()` and `messageForTransferRestriction()`
 
 **That's it. Seriously.**
 
-Our [reference implementation](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/contracts/SimpleRestrictedToken.sol) respects both these constraints and can easily be extended to handle more advanced use cases.
+Our [reference implementation](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/contracts/SimpleRestrictedToken.sol) respects both these constraints and can easily be extended to handle more advanced use-cases.
 
-### Basic Usage
+## Basic Usage
 
-Install
-
-In your
+Install the `simple-restricted-token` contract library  
 `$ npm install @tokensoft/simple-restricted-token`
 
-View on [Remix](#)
+Import to your Solidity project and inherit from `SimpleRestrictedToken.sol`
 
 ```solidity
+pragma solidity ^0.4.24;
+import "@tokensoft/simple-restricted-token/contracts/SimpleRestrictedToken.sol";
+
+contract MyRestrictedToken is SimpleRestrictedToken {
+  /* ... */
+}
+```
+
+View the below usage example on [Remix](#)
+
+```solidity
+pragma solidity ^0.4.24;
+import "@tokensoft/simple-restricted-token/SimpleRestrictedToken.sol";
+
 contract MyRestrictedToken is SimpleRestrictedToken {
   constructor () public {
     /* ... */
