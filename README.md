@@ -64,9 +64,9 @@ function messageForTransferRestriction (uint restrictionCode)
 The logic of `detectTransferRestriction()` and `messageForTransferRestriction()` are left up to the issuer, with just two requirements respectively:
 
 1.  SRS-20 tokens must perform a `detectTransferRestriction()` check inside `transfer` and `transferFrom` methods. If a value other than `0` is returned, revert the transaction.
-2.  SRS-20 tokens must implement `messageForTransferRestriction` in such a way that a `restrictionCode` of `0` will always return the message string `SUCCESS`.
+2.  SRS-20 tokens must implement `messageForTransferRestriction()` in such a way that a `restrictionCode` of `0` will always return the message string `"SUCCESS"`.
 
-That's it. Seriously.
+**That's it. Seriously.**
 
 Our [reference implementation](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/contracts/SimpleRestrictedToken.sol) respects both these constraints and can easily be extended to handle more advanced use cases.
 
