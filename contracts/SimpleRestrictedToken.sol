@@ -1,12 +1,11 @@
 pragma solidity 0.4.24;
-
 import "zeppelin-solidity/contracts/tokens/ERC20/StandardToken.sol";
 
 /// @title Reference implementation for the SRS-20 token
 /// @author TokenSoft Inc
 /// @dev Inherit from this contract to implement your own SRS-20 token
 contract SimpleRestrictedToken is StandardToken {
-    /// @notice Detects if a transfer will be rejected and if so returns an appropriate reference code
+    /// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code
     /// @param {address} from - Sending address
     /// @param {address} to - Receiving address
     /// @param {uint} value - Amount of tokens being transferred
