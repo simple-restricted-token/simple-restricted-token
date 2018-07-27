@@ -1,4 +1,4 @@
-# Simple Restricted Token Standard
+# SRS-20: Simple Restricted Token Standard
 
 SRS-20 is an easily extendable standard for issuing tokens with transfer restrictions. See [EIP-XXX](#) to learn more.
 
