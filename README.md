@@ -63,7 +63,7 @@ The logic of `detectTransferRestriction` is up to the issuer, with just two requ
 
 Our [reference implementation](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/contracts/SimpleRestrictedToken.sol) respects both these constraints and can easily be extended to handle more advanced use cases.
 
-### Basic Example
+### Basic Usage
 
 View on [Remix](https://remix.ethereum.org/#version=soljson-v0.4.24+commit.e67f0147.js&optimize=true&gist=264272677547fe32d1c2eb2fd8294315)
 
