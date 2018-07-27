@@ -21,7 +21,7 @@ Specifically this compromises the usuability of security tokens and the exchange
 
 It is our belief that a simplistic underlying standard, which may be easily extended for varying compliance needs, is a far more forward-thinking approach.
 
-This design gives greater freedom / token upgradability to issuers and simultaneously decreases the burden of integration for developers and exchanges.
+This design gives greater freedom / upgradability to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
 
 Additionally, we see fit to provide a framework by which human-readable messages may be returned when token transfers are rejected.
 
@@ -52,12 +52,12 @@ function detectTransferRestriction(address to, address from, uint value)
 
 The logic of `detectTransferRestriction` is up to the issuer, with just two requirements:
 
-1.  SRS-20 tokens must perform an `detectTransferRestriction` check inside `transfer` and `transferFrom` methods.
+1.  SRS-20 tokens must perform a `detectTransferRestriction` check inside `transfer` and `transferFrom` methods.
 2.  The `detectTransferRestriction` function must return a `uint` restriction code, where `0` is reserved for `'SUCCESS'`.  
     All other returned codes must map to a human-readable message held in the public storage variable named `restrictions` (e.g. `mapping (uint => string) public restrictions`).  
     The `restrictions` variable must be directly accesible through the token contract.
 
-Our [reference implementation](#) respects both these constraints and can easily be extended to handle more advanced use cases.
+Our [reference implementation](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/contracts/SimpleRestrictedToken.sol) respects both these constraints and can easily be extended to handle more advanced use cases.
 
 ### Basic Example
 
