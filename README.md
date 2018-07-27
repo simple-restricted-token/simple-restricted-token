@@ -33,53 +33,60 @@ A widely adopted pattern for handling rejections and messaging within token tran
 
 As a standard, SRS-20 is dead simple to implement.
 
-It adds a public variable `restrictions` and _just one_ public function `detectTransferRestriction()` on top of the tried and true ERC-20 standard.
+It adds _just two_ public functions on top of the tried and true ERC-20 standard.
 
 ```solidity
-/// @notice Stores human-readable restriction messages, mapped by uint codes
-/// @dev 0 is always mapped to 'SUCCESS'
-mapping (uint => string) public restrictions
-
-/// @notice Detects if a transfer will be rejected and if so returns a corresponding code
-/// @param {address} to - Receiving address
+/// @notice Detects if a transfer will be rejected and if so returns an appropriate reference code
 /// @param {address} from - Sending address
-/// @param {uint} value - Amount tokens being transferred
-/// @return {uint} retrictionCode - code by which to lookup the offending restriction
-function detectTransferRestriction(address to, address from, uint value)
+/// @param {address} to - Receiving address
+/// @param {uint} value - Amount of tokens being transferred
+/// @return {uint} restrictionCode - Identifier by which to reference message for rejection reasoning
+function detectTransferRestriction (address from, address to, uint value)
   public
-  constant
+  view
   returns (uint restrictionCode)
+{
+  /* ... */
+}
+
+/// @notice Returns a human-readable message for a given restriction code
+/// @param {uint} restrictionCode - Identifier for looking up a message
+/// @return {string} message - Text showing the restriction's reasoning
+function messageForTransferRestriction (uint restrictionCode)
+  public
+  view
+  returns (string message)
 {
   /* ... */
 }
 ```
 
-The logic of `detectTransferRestriction` is up to the issuer, with just two requirements:
+The logic of `detectTransferRestriction()` and `messageForTransferRestriction()` are left up to the issuer, with just two requirements respectively:
 
-1.  SRS-20 tokens must perform a `detectTransferRestriction` check inside `transfer` and `transferFrom` methods.
-2.  The `detectTransferRestriction` function must return a `uint` restriction code, where `0` is reserved for `'SUCCESS'`.  
-    All other returned codes must map to a human-readable message held in the public storage variable named `restrictions` (e.g. `mapping (uint => string) public restrictions`).  
-    The `restrictions` variable must be directly accesible through the token contract.
+1.  SRS-20 tokens must perform a `detectTransferRestriction()` check inside `transfer` and `transferFrom` methods. If a value other than `0` is returned, revert the transaction.
+2.  SRS-20 tokens must implement `messageForTransferRestriction` in such a way that a `restrictionCode` of `0` will always return the message string `SUCCESS`.
+
+That's it. Seriously.
 
 Our [reference implementation](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/contracts/SimpleRestrictedToken.sol) respects both these constraints and can easily be extended to handle more advanced use cases.
 
 ### Basic Usage
 
-View on [Remix](https://remix.ethereum.org/#version=soljson-v0.4.24+commit.e67f0147.js&optimize=true&gist=264272677547fe32d1c2eb2fd8294315)
+Install
+
+In your
+`$ npm install @tokensoft/simple-restricted-token`
+
+View on [Remix](#)
 
 ```solidity
 contract MyRestrictedToken is SimpleRestrictedToken {
   constructor () public {
-    // Map restriction codes to human-readable messages
-    restrictions[1] = 'ILLEGAL_TRANSFER_TO_ZERO_ADDRESS';
-    restrictions[2] = 'ILLEGAL_TRANSFER_TO_OWN_TOKEN_CONTRACT';
-
-    // Set token details and initial balances
     /* ... */
   }
 
-  // Detect restrictions and return appropriate codes
-  function detectTransferRestriction (address to, address from, uint value)
+  // Detect a restriction and return an appropriate code
+  function detectTransferRestriction (address from, address to, uint value)
     public
     constant
     returns (uint restrictionCode)
@@ -89,7 +96,24 @@ contract MyRestrictedToken is SimpleRestrictedToken {
     } else if (to == address(this)) {
       restrictionCode = 2; // illegal transfer to own token contract
     } else {
-      restrictionCode = 0; // successful transfer (default)
+      restrictionCode = 0; // successful transfer (required)
+    }
+  }
+
+  // Return message for given restriction code
+  function messageForTransferRestriction (uint restrictionCode)
+    public
+    view
+    return (string message)
+  {
+    if (restrictionCode == 0) {
+      message = "SUCCESS"; // required
+    } else if (restrictionCode == 1) {
+      message = "ILLEGAL_TRANSFER_TO_ZERO_ADDRESS";
+    } else if (restrictioNCode == 2) {
+      message = "ILLEGAL_TRANSFER_TO_OWN_TOKEN_CONTRACT";
+    } else {
+      message = "UNKNOWN"; // fallback
     }
   }
 }
