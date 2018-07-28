@@ -28,8 +28,6 @@ contract SimpleRestrictedToken is StandardToken {
     {
         if (restrictionCode == 0) {
             message = "SUCCESS";
-        } else {
-            message = "UNKNOWN";
         }
     }
     
