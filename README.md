@@ -15,17 +15,17 @@ A few emergent examples:
 
 Furthermore, standards adoption amongst token issuers has the potential to evolve into a dynamic and interoperable landscape of automated compliance.
 
-However, we feel the current trend of ~~proposing~~ marketing token standards as solutions for individual use-cases poses a threat to future interoperability within the tokenized ecosystem.
+However, we feel the current trend of ~~proposing~~ marketing token standards as solutions for individual use-cases poses a threat to future **interoperability** within the tokenized ecosystem.
 
-Specifically this compromises the usability of security tokens and the exchanges that wish to support them.
+Specifically this compromises the **usability** of security tokens and the exchanges that wish to support them.
 
 It is our belief that a simplistic underlying standard, which may be easily extended for varying compliance needs, is a far more forward-thinking approach.
 
-This design gives greater freedom / upgradability to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
+This design gives **greater freedom / upgradability** to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
 
 Additionally, we see fit to provide a framework by which human-readable messages may be returned when token transfers are reverted.
 
-Visibility into _why_ a token's transfer was reverted is of equal importance to the successful enforcement of the transfer restriction itself.
+**Transparency** as to _why_ a token's transfer was reverted is of equal importance to the successful enforcement of the transfer restriction itself.
 
 A widely adopted pattern for handling rejections and messaging within token transfers will highly convenience the exchanges, wallets, and interface builders of the future.
 
