@@ -1,0 +1,30 @@
+{
+  "name": "@tokensoft/simple-restricted-token-standard",
+  "version": "0.0.0",
+  "description": "SRS-20 is an easily extendable standard for issuing tokens with transfer restrictions.",
+  "scripts": {
+    "test": "truffle test",
+    "test:watch": "nodemon --exec \"npm run test\"",
+    "compile": "truffle compile",
+    "migrate": "truffle migrate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tokensoft/simple-restricted-token-standard.git"
+  },
+  "author": "TokenSoft Inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tokensoft/simple-restricted-token-standard/issues"
+  },
+  "homepage": "https://github.com/tokensoft/simple-restricted-token-standard#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "truffle": "^4.1.13",
+    "zeppelin-solidity": "^1.11.0"
+  }
+}
