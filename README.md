@@ -124,8 +124,6 @@ contract MyRestrictedToken is SimpleRestrictedToken {
       message = "ILLEGAL_TRANSFER_TO_ZERO_ADDRESS";
     } else if (restrictioNCode == 2) {
       message = "ILLEGAL_TRANSFER_TO_OWN_TOKEN_CONTRACT";
-    } else {
-      message = "UNKNOWN"; // fallback
     }
   }
 }
