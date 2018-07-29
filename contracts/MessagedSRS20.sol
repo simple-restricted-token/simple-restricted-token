@@ -6,7 +6,7 @@ contract MessagedSRS20 is SimpleRestrictedToken {
     using MessagesAndCodes for MessagesAndCodes.Data;
     MessagesAndCodes.Data internal messagesAndCodes;
 
-    constructor () {
+    constructor () public {
         messagesAndCodes.addMessage(0, "SUCCESS");
     }
 

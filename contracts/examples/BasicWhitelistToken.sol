@@ -3,7 +3,7 @@ import "../MessagedSRS20.sol";
 import "zeppelin-solidity/contracts/access/Whitelist.sol";
 
 contract BasicWhitelistToken is MessagedSRS20, Whitelist {
-    constructor () {
+    constructor () public {
         messagesAndCodes.addMessage(1, "ILLEGAL_TRANSFER_TO_NON_WHITELISTED_ADDRESS");
     }
 
