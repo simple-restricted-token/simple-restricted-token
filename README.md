@@ -36,11 +36,11 @@ As a standard, SRS-20 is dead simple to implement.
 It adds _just two_ public functions on top of the tried and true ERC-20 standard.
 
 ```solidity
-/// @notice Detects if a transfer will be reverted and if so returns an appropriate restriction code
-/// @param {address} from - Sending address
-/// @param {address} to - Receiving address
-/// @param {uint} value - Amount of tokens being transferred
-/// @return {uint} restrictionCode - Identifier by which to reference message for rejection reasoning
+/// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code
+/// @param from Sending address
+/// @param to Receiving address
+/// @param value Amount of tokens being transferred
+/// @return Code by which to reference message for rejection reasoning
 function detectTransferRestriction (address from, address to, uint value)
   public
   view
@@ -50,8 +50,8 @@ function detectTransferRestriction (address from, address to, uint value)
 }
 
 /// @notice Returns a human-readable message for a given restriction code
-/// @param {uint} restrictionCode - Identifier for looking up a message
-/// @return {string} message - Text showing the restriction's reasoning
+/// @param restrictionCode Identifier for looking up a message
+/// @return Text showing the restriction's reasoning
 function messageForTransferRestriction (uint restrictionCode)
   public
   view
