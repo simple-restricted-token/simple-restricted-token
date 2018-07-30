@@ -7,7 +7,8 @@ contract MessagedSRS20 is SimpleRestrictedToken {
     MessagesAndCodes.Data internal messagesAndCodes;
 
     constructor () public {
-        messagesAndCodes.addMessage(0, "SUCCESS");
+        messagesAndCodes.addMessage(0, "UNKNOWN"); // fallback message
+        messagesAndCodes.addMessage(1, "SUCCESS"); // required 'SUCCESS' message
     }
 
     function messageForTransferRestriction (uint restrictionCode)
