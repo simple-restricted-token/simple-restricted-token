@@ -15,7 +15,7 @@ contract SimpleRestrictedToken is StandardToken {
         view
         returns (uint restrictionCode)
     {
-        restrictionCode = 0;
+        restrictionCode = 1;
     }
         
     /// @notice Returns a human-readable message for a given restriction code
@@ -26,7 +26,7 @@ contract SimpleRestrictedToken is StandardToken {
         view
         returns (string message)
     {
-        if (restrictionCode == 0) {
+        if (restrictionCode == 1) {
             message = "SUCCESS";
         }
     }
@@ -35,7 +35,7 @@ contract SimpleRestrictedToken is StandardToken {
         public
         returns (bool success)
     {
-        require(detectTransferRestriction(msg.sender, to, value) == 0);
+        require(detectTransferRestriction(msg.sender, to, value) == 1);
         success = super.transfer(to, value);
     }
 
@@ -43,7 +43,7 @@ contract SimpleRestrictedToken is StandardToken {
         public
         returns (bool success)
     {
-        require(detectTransferRestriction(from, to, value) == 0);
+        require(detectTransferRestriction(from, to, value) == 1);
         success = super.transferFrom(from, to, value);
     }
 }

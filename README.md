@@ -63,8 +63,8 @@ function messageForTransferRestriction (uint restrictionCode)
 
 The logic of `detectTransferRestriction()` and `messageForTransferRestriction()` are left up to the issuer, with just two requirements respectively:
 
-1.  SRS-20 tokens must perform a `detectTransferRestriction()` check inside `transfer` and `transferFrom` methods. If a value other than `0` is returned, revert the transaction.
-2.  SRS-20 tokens must implement `messageForTransferRestriction()` in such a way that a `restrictionCode` of `0` will always return the message string `"SUCCESS"`.
+1.  SRS-20 tokens must perform a `detectTransferRestriction()` check inside `transfer` and `transferFrom` methods. If a value other than `1` is returned, revert the transaction.
+2.  SRS-20 tokens must implement `messageForTransferRestriction()` in such a way that a `restrictionCode` of `1` will always return the message string `"SUCCESS"`.
 
 **That's it. Seriously.**
 
@@ -104,11 +104,11 @@ contract MyRestrictedToken is SimpleRestrictedToken {
     returns (uint restrictionCode)
   {
     if (to == 0x0) {
-      restrictionCode = 1; // illegal transfer to zero address
+      restrictionCode = 2; // illegal transfer to zero address
     } else if (to == address(this)) {
-      restrictionCode = 2; // illegal transfer to own token contract
+      restrictionCode = 3; // illegal transfer to own token contract
     } else {
-      restrictionCode = 0; // successful transfer (required)
+      restrictionCode = 1; // successful transfer (required)
     }
   }
 
@@ -118,11 +118,11 @@ contract MyRestrictedToken is SimpleRestrictedToken {
     view
     return (string message)
   {
-    if (restrictionCode == 0) {
+    if (restrictionCode == 1) {
       message = "SUCCESS"; // required
-    } else if (restrictionCode == 1) {
+    } else if (restrictionCode == 2) {
       message = "ILLEGAL_TRANSFER_TO_ZERO_ADDRESS";
-    } else if (restrictioNCode == 2) {
+    } else if (restrictioNCode == 3) {
       message = "ILLEGAL_TRANSFER_TO_OWN_TOKEN_CONTRACT";
     }
   }
