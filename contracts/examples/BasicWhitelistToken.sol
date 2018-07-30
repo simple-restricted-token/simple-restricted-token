@@ -12,7 +12,7 @@ contract BasicWhitelistToken is MessagedSRS20, Whitelist {
         view
         returns (uint restrictionCode)
     {
-        if (whitelist(to)) {
+        if (!whitelist(to)) {
             restrictionCode = 2; // illegal transfer outside of whitelist
         } else {
             restrictionCode = 1; // successful transfer (required)
