@@ -1,5 +1,5 @@
 pragma solidity ^0.4.24;
-import "../MessagedSRS20.sol";
+import "./MessagedSRS20.sol";
 import "zeppelin-solidity/contracts/access/Whitelist.sol";
 
 contract BasicWhitelistToken is MessagedSRS20, Whitelist {
