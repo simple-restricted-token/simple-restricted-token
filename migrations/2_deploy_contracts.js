@@ -3,6 +3,9 @@ var MessagedSRS20Mock = artifacts.require('./mocks/MessagedSRS20Mock')
 var BasicWhitelistTokenMock = artifacts.require(
   './mocks/BasicWhitelistTokenMock'
 )
+var ManagedWhitelistTokenMock = artifacts.require(
+  './mocks/ManagedWhitelistTokenMock'
+)
 var MessagesAndCodes = artifacts.require('./libraries/MessagesAndCodes')
 
 const initialBalance = '100000000000000000000' // 100 tokens when decimals is 18
@@ -14,7 +17,8 @@ module.exports = function(deployer, network, [initialAccount, ...accounts]) {
       await deployer.deploy(MessagesAndCodes)
       await deployer.link(MessagesAndCodes, [
         MessagedSRS20Mock,
-        BasicWhitelistTokenMock
+        BasicWhitelistTokenMock,
+        ManagedWhitelistTokenMock
       ])
 
       // deploy SRS20Mock for tests
@@ -27,7 +31,17 @@ module.exports = function(deployer, network, [initialAccount, ...accounts]) {
       await deployer.deploy(
         BasicWhitelistTokenMock,
         initialAccount,
-        initialBalance
+        initialBalance,
+        2 // nonWhitelistCode
+      )
+
+      // deploy ManagedWhitelistTokenMock for tests
+      await deployer.deploy(
+        ManagedWhitelistTokenMock,
+        initialAccount,
+        initialBalance,
+        2, // sendNotAllowedCode
+        3 // receiveNotAllowedCode
       )
     } catch (err) {
       console.log(('Failed to Deploy Contracts', err))
