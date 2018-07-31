@@ -3,8 +3,16 @@ import "./MessagedSRS20.sol";
 import "zeppelin-solidity/contracts/access/Whitelist.sol";
 
 contract BasicWhitelistToken is MessagedSRS20, Whitelist {
-    constructor () public {
-        messagesAndCodes.addMessage(2, "ILLEGAL_TRANSFER_TO_NON_WHITELISTED_ADDRESS");
+    uint public nonWhitelistCode = 2; // default error code
+    
+    constructor (uint _nonWhiteListCode) public {
+        if (_nonWhiteListCode > 1) {
+            nonWhitelistCode = _nonWhiteListCode;
+        }
+        messagesAndCodes.addMessage(
+            nonWhitelistCode,
+            "ILLEGAL_TRANSFER_TO_NON_WHITELISTED_ADDRESS"
+        );
     }
 
     function detectTransferRestriction (address from, address to, uint value)
@@ -13,9 +21,9 @@ contract BasicWhitelistToken is MessagedSRS20, Whitelist {
         returns (uint restrictionCode)
     {
         if (!whitelist(to)) {
-            restrictionCode = 2; // illegal transfer outside of whitelist
+            restrictionCode = nonWhitelistCode; // illegal transfer outside of whitelist
         } else {
-            restrictionCode = 1; // successful transfer (required)
+            restrictionCode = SUCCESS_CODE; // successful transfer (required)
         }
     }
 }

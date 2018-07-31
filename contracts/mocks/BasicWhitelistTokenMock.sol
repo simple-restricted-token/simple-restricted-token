@@ -3,9 +3,10 @@ import "./BasicTokenMock.sol";
 import "../examples/BasicWhitelistToken.sol";
 
 contract BasicWhitelistTokenMock is BasicTokenMock, BasicWhitelistToken {
-    constructor (address initialAccount, uint256 initialBalance)
-      BasicTokenMock(initialAccount, initialBalance)
-      public
+    constructor (address initialAccount, uint256 initialBalance, uint8 nonWhitelistCode)
+        BasicTokenMock(initialAccount, initialBalance)
+        BasicWhitelistToken(nonWhitelistCode)
+        public
     {
         addAddressToWhitelist(initialAccount);
     }
