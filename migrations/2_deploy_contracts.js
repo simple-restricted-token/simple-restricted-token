@@ -10,13 +10,20 @@ const initialBalance = '100000000000000000000' // 100 tokens when decimals is 18
 module.exports = function(deployer, network, [initialAccount, ...accounts]) {
   deployer.then(async () => {
     try {
-      await deployer.deploy(SRS20Mock, initialAccount, initialBalance)
+      // deploy and link MessagesAndCodes lib
       await deployer.deploy(MessagesAndCodes)
       await deployer.link(MessagesAndCodes, [
         MessagedSRS20Mock,
         BasicWhitelistTokenMock
       ])
+
+      // deploy SRS20Mock for tests
+      await deployer.deploy(SRS20Mock, initialAccount, initialBalance)
+
+      // deploy MessagedSRC20Mock for tests
       await deployer.deploy(MessagedSRS20Mock, initialAccount, initialBalance)
+
+      // deploy BasicWhitelistTokenMock for tests
       await deployer.deploy(
         BasicWhitelistTokenMock,
         initialAccount,
