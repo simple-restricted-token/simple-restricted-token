@@ -1,15 +1,11 @@
 pragma solidity ^0.4.24;
+import "./SRS20.sol";
 import "zeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
 
 /// @title Reference implementation for the SRS-20 token
 /// @author TokenSoft Inc
 /// @dev Inherit from this contract to implement your own SRS-20 token
-contract SimpleRestrictedToken is StandardToken {
-    /// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code
-    /// @param from Sending address
-    /// @param to Receiving address
-    /// @param value Amount of tokens being transferred
-    /// @return Code by which to reference message for rejection reasoning
+contract SimpleRestrictedToken is SRS20, StandardToken {
     function detectTransferRestriction (address from, address to, uint value)
         public
         view
@@ -18,9 +14,6 @@ contract SimpleRestrictedToken is StandardToken {
         restrictionCode = 1;
     }
         
-    /// @notice Returns a human-readable message for a given restriction code
-    /// @param restrictionCode Identifier for looking up a message
-    /// @return Text showing the restriction's reasoning
     function messageForTransferRestriction (uint restrictionCode)
         public
         view
