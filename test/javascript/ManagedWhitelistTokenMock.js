@@ -121,6 +121,10 @@ contract('ManagedWhitelistTokenMock', ([owner, ...accounts]) => {
     assert.equal(isReceiveAllowed, false)
   })
 
+  // it('should allow a token transfer between two whitelisted addresses', async () => {
+  //   const [sender, receiver] = accounts 
+  // })
+
   it('should return message "UNKNOWN for restriction code of 0', async () => {
     const message = await token.messageForTransferRestriction(0)
     assert.equal(message, 'UNKNOWN')
