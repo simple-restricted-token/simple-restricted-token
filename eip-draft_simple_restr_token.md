@@ -1,7 +1,7 @@
 ---
 eip: <to be assigned>
 title: SRS-20: Simple Restricted Token Standard
-authors: TokenSoft Inc (@tokensoft), Ron Gierlach (@rongierlach), James Poole (@pooleja), Mason Borda (@masonicGIT)
+authors: TokenSoft Inc (@tokensoft)
 status: Draft
 type: Standards
 category (*only required for Standard Track): ERC
