@@ -1,6 +1,6 @@
 ---
 eip: <to be assigned>
-title: Simple Restricted Token Standard
+title: SRS-20: Simple Restricted Token Standard
 authors: TokenSoft Inc (@tokensoft), Ron Gierlach (@rongierlach), James Poole (@pooleja), Mason Borda (@masonicGIT)
 status: Draft
 type: Standards
@@ -10,7 +10,7 @@ created: 2018-07-27
 
 <!--You can leave these HTML comments in your merged EIP and delete the visible duplicate text guides, they will not appear and may be helpful to refer to if you edit it again. This is the suggested template for new EIPs. Note that an EIP number will be assigned by an editor. When opening a pull request to submit your EIP, please use an abbreviated title in the filename, `eip-draft_title_abbrev.md`. The title should be 44 characters or less.-->
 
-# Simple Restricted Token Standard, "SRS-20"
+# SRS-20: Simple Restricted Token Standard
 
 ## Simple Summary
 
@@ -41,19 +41,13 @@ A few emergent examples:
 
 Furthermore, standards adoption amongst token issuers has the potential to evolve into a dynamic and interoperable landscape of automated compliance.
 
-However, the current trend of ~~proposing~~ marketing token standards as solutions for individual use-cases poses a threat to future **interoperability** within the tokenized ecosystem.
+However, the current trend of ~~proposing~~ marketing token standards as solutions for individual use-cases poses a threat to future interoperability within the tokenized ecosystem. Specifically this compromises the usability of security tokens and the exchanges that wish to support them.
 
-Specifically this compromises the **usability** of security tokens and the exchanges that wish to support them.
+It is our belief that a simplistic underlying standard, which may be easily extended for varying compliance needs, is a far more forward-thinking approach. The following design gives greater freedom / upgradability to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
 
-It is our belief that a simplistic underlying standard, which may be easily extended for varying compliance needs, is a far more forward-thinking approach.
+Additionally, we see fit to provide a pattern by which human-readable messages may be returned when token transfers are reverted. Transparency as to _why_ a token's transfer was reverted is of equal importance to the successful enforcement of the transfer restriction itself.
 
-This design gives **greater freedom / upgradability** to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
-
-Additionally, we see fit to provide a pattern by which human-readable messages may be returned when token transfers are reverted.
-
-**Transparency** as to _why_ a token's transfer was reverted is of equal importance to the successful enforcement of the transfer restriction itself.
-
-A widely adopted pattern for handling rejections and messaging within token transfers will highly convenience the exchanges, wallets, and interface builders of the future.
+A widely adopted standard for detecting restrictions and messaging errors within token transfers will highly convenience the exchanges, wallets, and issuers of the future.
 
 ## Specification
 
@@ -72,67 +66,59 @@ contract ERC20 {
   event Transfer(address indexed from, address indexed to, uint256 value);
 }
 ```
-The SRS-20 standard builds on ERC20's interface, adding two simple functions:
+The SRS-20 standard builds on ERC-20's interface, adding two functions and an event:
 ```solidity
-interface SRS20 {
-  /// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code
-  /// @param from Sending address
-  /// @param to Receiving address
-  /// @param value Amount of tokens being transferred
-  /// @return Code by which to reference message for rejection reasoning
-  /// @dev Override with your custom transfer restriction logic
+contract SRS20 is ERC20 {
   function detectTransferRestriction (
     address from,
     address to,
-    uint value
-  ) external view returns (uint restrictionCode);
+    uint256 value
+  ) public view returns (uint8);
 
-  /// @notice Returns a human-readable message for a given restriction code
-  /// @param restrictionCode Identifier for looking up a message
-  /// @return Text showing the restriction's reasoning
-  /// @dev Override with your custom message and restrictionCode handling
   function messageForTransferRestriction (
-    uint restrictionCode
-  ) external view returns (string message);
+    uint8 restrictionCode
+  ) public view returns (string);
+
+  event TransferRestricted(
+    address indexed from,
+    address indexed to,
+    uint256 value,
+    uint8 indexed restrictionCode
+  );
 }
 ```
 
-The logic of `detectTransferRestriction()` and `messageForTransferRestriction()` are left up to the issuer, with just two requirements respectively:
+The logic of `detectTransferRestriction` and `messageForTransferRestriction` are left up to the issuer.
 
-1.  The token contract MUST perform a `detectTransferRestriction()` check inside `transfer` and `transferFrom` methods. If a value other than `0` is returned, revert the transaction.
-2.  The token contract must implement `messageForTransferRestriction()` in such a way that a `restrictionCode` of `0` returns either a _success_ message or no message whatsoever.
+The only requirement is that `detectTransferRestriction` must be evaluated inside a token's `transfer` and `transferFrom` methods.
 
-**That's it. Seriously.**
+If, inside these transfer methods, `detectTransferRestriction` returns a value other than `0`, the transaction should be reverted. Aditionally, a `TransferRestricted` event should be emitted.
 
 ## Rationale
 
 <!--The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.-->
 
-The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other languages. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.
+The standard proposes two functions and an event on top of the ERC-20 standard. Let's discuss the rationale for each.
 
-\<Have Mason fill this out...>
+1. `detectTransferRestriction` - This function is where an issuer enforces the restriction logic of their token transfers. Some examples of this might include, checking if the token recipient is whitelisted, checking if a sender's tokens are frozen in a lock-up period, etc. Because implementation is up to the issuer, this function serves solely to standardize _where_ execution of such logic should be initiated. Additionally, 3rd parties may publicly call this function to check the expected outcome of a transfer. Because this function returns a `uint8` code rather than a boolean or just reverting, it allows the function caller to know the reason why a transfer might fail and report this to relevant counterparties.
+2. `messageForTransferRestriction` - This function is effectively an accessor for the "message", a human-readable explanation as to _why_ a transaction is restricted. By standardizing message look-ups, we empower user interface builders to effectively report errors to users.
+3. `TransferRestricted` - Standardization of this event gives access to an easily accessible history of a token's enforced transfer restrictions. Emitting the restriction code rather than the entire message string keeps gas-cost of execution predictably lower.
 
 ## Backwards Compatibility
 
 <!--All EIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The EIP must explain how the author proposes to deal with these incompatibilities. EIP submissions without a sufficient backwards compatibility treatise may be rejected outright.-->
 
-All EIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The EIP must explain how the author proposes to deal with these incompatibilities. EIP submissions without a sufficient backwards compatibility treatise may be rejected outright.
+By design SRS-20 is fully backwards compatible with ERC-20.  
+Some examples of how it may be integrated with common types of restricted tokens may be found [here](#link-to-examples-repo).
 
-\<Point to examples repo>
-
-## Test Cases
+## Test Cases & Implementation
 
 <!--Test cases for an implementation are mandatory for EIPs that are affecting consensus changes. Other EIPs can choose to include links to test cases if applicable.-->
 
-Test cases for an implementation are mandatory for EIPs that are affecting consensus changes. Other EIPs can choose to include links to test cases if applicable.
-
-## Implementation
-
 <!--The implementations must be completed before any EIP is given status "Final", but it need not be completed before the EIP is accepted. While there is merit to the approach of reaching consensus on the specification and rationale before writing code, the principle of "rough consensus and running code" is still useful when it comes to resolving many discussions of API details.-->
 
-The implementations must be completed before any EIP is given status "Final", but it need not be completed before the EIP is accepted. While there is merit to the approach of reaching consensus on the specification and rationale before writing code, the principle of "rough consensus and running code" is still useful when it comes to resolving many discussions of API details.
-
-\<Link to reference implementation repo>
+See the reference implementation and tests [here](https://github.com/tokensoft/SRS20-reference-implementation#readme).  
+See some examples of common usage patterns for SRS-20 [here](https://github.com/tokensoft/simple-restricted-token-standard#readme).
 
 ## Copyright
 
