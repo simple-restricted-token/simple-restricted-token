@@ -69,16 +69,10 @@ contract ERC20 {
 The SRS-20 standard builds on ERC-20's interface, adding two functions and an event:
 ```solidity
 contract SRS20 is ERC20 {
-  function detectTransferRestriction (
-    address from,
-    address to,
-    uint256 value
-  ) public view returns (uint8);
-
-  function messageForTransferRestriction (
-    uint8 restrictionCode
-  ) public view returns (string);
-
+  function detectTransferRestriction (address from, address to, uint256 value)
+    public view returns (uint8);
+  function messageForTransferRestriction (uint8 restrictionCode)
+    public view returns (string);
   event TransferRestricted(
     address indexed from,
     address indexed to,
