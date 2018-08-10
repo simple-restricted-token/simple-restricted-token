@@ -4,20 +4,11 @@ SRS-20 is an easily extendable standard for issuing tokens with transfer restric
 See the [EIP draft](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
 
 ## The Standard
-
-The SRS-20 standard builds on ERC-20's interface, adding two functions and an event:
+The SRS-20 standard builds on ERC-20's interface, adding two functions:
 ```solidity
 contract SRS20 is ERC20 {
-  function detectTransferRestriction (address from, address to, uint256 value)
-    public view returns (uint8);
-  function messageForTransferRestriction (uint8 restrictionCode)
-    public view returns (string);
-  event TransferRestricted(
-    address indexed from,
-    address indexed to,
-    uint256 value,
-    uint8 indexed restrictionCode
-  );
+  function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);
+  function messageForTransferRestriction (uint8 restrictionCode) public view returns (string);
 }
 ```
 
