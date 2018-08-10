@@ -66,19 +66,11 @@ contract ERC20 {
   event Transfer(address indexed from, address indexed to, uint256 value);
 }
 ```
-The SRS-20 standard builds on ERC-20's interface, adding two functions and an event:
+The SRS-20 standard builds on ERC-20's interface, adding two functions:
 ```solidity
 contract SRS20 is ERC20 {
-  function detectTransferRestriction (address from, address to, uint256 value)
-    public view returns (uint8);
-  function messageForTransferRestriction (uint8 restrictionCode)
-    public view returns (string);
-  event TransferRestricted(
-    address indexed from,
-    address indexed to,
-    uint256 value,
-    uint8 indexed restrictionCode
-  );
+  function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);
+  function messageForTransferRestriction (uint8 restrictionCode) public view returns (string);
 }
 ```
 
@@ -86,7 +78,7 @@ The logic of `detectTransferRestriction` and `messageForTransferRestriction` are
 
 The only requirement is that `detectTransferRestriction` must be evaluated inside a token's `transfer` and `transferFrom` methods.
 
-If, inside these transfer methods, `detectTransferRestriction` returns a value other than `0`, the transaction should be reverted. Aditionally, a `TransferRestricted` event should be emitted.
+If, inside these transfer methods, `detectTransferRestriction` returns a value other than `0`, the transaction should be reverted.
 
 ## Rationale
 
