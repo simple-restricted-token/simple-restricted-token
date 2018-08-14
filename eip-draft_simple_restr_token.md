@@ -88,7 +88,6 @@ The standard proposes two functions and an event on top of the ERC-20 standard. 
 
 1. `detectTransferRestriction` - This function is where an issuer enforces the restriction logic of their token transfers. Some examples of this might include, checking if the token recipient is whitelisted, checking if a sender's tokens are frozen in a lock-up period, etc. Because implementation is up to the issuer, this function serves solely to standardize _where_ execution of such logic should be initiated. Additionally, 3rd parties may publicly call this function to check the expected outcome of a transfer. Because this function returns a `uint8` code rather than a boolean or just reverting, it allows the function caller to know the reason why a transfer might fail and report this to relevant counterparties.
 2. `messageForTransferRestriction` - This function is effectively an accessor for the "message", a human-readable explanation as to _why_ a transaction is restricted. By standardizing message look-ups, we empower user interface builders to effectively report errors to users.
-3. `TransferRestricted` - Standardization of this event gives easy access to the history of a token's enforced transfer restrictions. By emitting a restriction code rather than a "message" string, gas-cost of execution stays predictable and the payload remains useful.
 
 ## Backwards Compatibility
 
