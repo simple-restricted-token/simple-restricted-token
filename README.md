@@ -18,14 +18,14 @@ contract SRS20 is ERC20 {
 
 Several common transfer restriction patterns implemented on SRS-20:
 
-1.  [Cap Tables](#)
+1.  [Cap Tables](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/cap-tables)
 2.  [Lock-Up Periods](#)
-3.  [Maximum Shareholder Accounts](#)
+3.  [Maximum Shareholder Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/shareholder-rules)
 4.  [Whitelisted Investor Addresses](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
 
-### Prominent Examples
+<!-- ### Prominent Examples
 
 We have included example implementations of the following high-profile standards proposals on top of SRS-20:
 
 1.  [Harbor's R-Token](#)
-2.  [Delaware General Corporations Law (DCGL) ERC-884 Token](#)
+2.  [Delaware General Corporations Law (DCGL) ERC-884 Token](#) -->
