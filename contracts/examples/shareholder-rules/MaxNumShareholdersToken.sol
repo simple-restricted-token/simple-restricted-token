@@ -22,12 +22,15 @@ contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
         );
     }
 
-    function changeMaxNumShareholders (uint256 newmaxNumShareholders)
+    function changeMaxNumShareholders (uint256 newMaxNumShareholders)
         public
         onlyOwner
     {
-        require(newmaxNumShareholders >= numShareholders, "New maximum number of shareholders must be greater than the current number");
-        maxNumShareholders = newmaxNumShareholders;
+        require(
+            newMaxNumShareholders >= numShareholders,
+            "New max number of shareholder accounts must be greater than the current amount"
+        );
+        maxNumShareholders = newMaxNumShareholders;
     }
 
     function detectTransferRestriction (address from, address to, uint256 value)
