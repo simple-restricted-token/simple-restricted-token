@@ -37,29 +37,52 @@ contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
         returns (uint8 restrictionCode)
     {
         restrictionCode = SUCCESS_CODE;
-        bool exceedsMaxShareholders = numShareholders > maxNumShareholders;
+
+        bool exceedsMaxShareholders = calcNextNumShareholders(from, to, value) > maxNumShareholders;
         if (exceedsMaxShareholders) {
             restrictionCode = MAX_NUM_SHAREHOLDERS_CODE;
         }
     }
 
-    function recordShareholder (address from, address to, uint256 value)
+    function calcNextNumShareholders (address from, address to, uint256 value)
+        internal
+        view
+        returns (uint256)
+    {
+        bool shareholderNotRecorded = !isShareholder[to];
+        bool shareholderReplaced = (this.balanceOf(from) - value) == 0;
+        bool senderNotRecorded = !isShareholder[from] && !shareholderReplaced;
+        uint256 nextNumShareholders = numShareholders;
+
+        if (shareholderNotRecorded) {
+            nextNumShareholders++;
+        }
+        if (senderNotRecorded) {
+            nextNumShareholders++;
+        } else if (shareholderReplaced) {
+            nextNumShareholders--;
+        }
+
+        return nextNumShareholders;
+    }
+
+    function recordShareholders (address from, address to, uint256 value)
         internal
     {
-        bool senderNotAdded = !isShareholder[from];
-        if (senderNotAdded) {
-            numShareholders++;
-            isShareholder[from] = true;
-            emit ShareholderAdded(from);
-        }
-        bool shareholderAdded = !isShareholder[to];
-        if (shareholderAdded) {
+        bool shareholderNotRecorded = !isShareholder[to];
+        bool shareholderReplaced = (this.balanceOf(from) - value) == 0;
+        bool senderNotRecorded = !isShareholder[from] && !shareholderReplaced;
+
+        if (shareholderNotRecorded) {
             numShareholders++;
             isShareholder[to] = true;
             emit ShareholderAdded(to);
         }
-        bool shareholderReplaced = (this.balanceOf(from) - value) == 0;
-        if (shareholderReplaced) {
+        if (senderNotRecorded) {
+            numShareholders++;
+            isShareholder[from] = true;
+            emit ShareholderAdded(from);
+        } else if (shareholderReplaced) {
             numShareholders--;
             isShareholder[from] = false;
             emit ShareholderReplaced(to, from);
@@ -68,17 +91,17 @@ contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
 
     function transfer (address to, uint256 value)
         public
-        returns (bool success)
+        returns (bool)
     {
-        recordShareholder(msg.sender, to, value);
-        success = super.transfer(to, value);
+        recordShareholders(msg.sender, to, value);
+        return super.transfer(to, value);
     }
 
     function transferFrom (address from, address to, uint256 value)
         public
-        returns (bool success)
+        returns (bool)
     {
-        recordShareholder(from, to, value);
-        success = super.transferFrom(from, to, value);
+        recordShareholders(from, to, value);
+        return super.transferFrom(from, to, value);
     }
 }
