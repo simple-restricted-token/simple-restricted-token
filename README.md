@@ -21,7 +21,7 @@ Several common transfer restriction patterns implemented on SRS-20:
 1.  [Cap Tables](#)
 2.  [Lock-Up Periods](#)
 3.  [Maximum Shareholder Accounts](#)
-4.  [Whitelisted Investor Addresses](#)
+4.  [Whitelisted Investor Addresses](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
 
 ### Prominent Examples
 
