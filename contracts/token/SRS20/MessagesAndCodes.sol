@@ -1,6 +1,10 @@
 pragma solidity ^0.4.24;
 
 library MessagesAndCodes {
+    string public constant EMPTY_MESSAGE_ERROR = "Message cannot be empty string";
+    string public constant CODE_RESERVED_ERROR = "Given code is already pointing to a message";
+    string public constant CODE_UNASSIGNED_ERROR = "Given code does not point to a message";
+
     struct Data {
         mapping (uint8 => string) messages;
         uint8[] codes;
@@ -26,8 +30,8 @@ library MessagesAndCodes {
         public
         returns (uint8 code)
     {
-        require(!messageIsEmpty(_message), "Message is empty");
-        require(!messageExists(self, _code), "Code already points to a message");
+        require(!messageIsEmpty(_message), EMPTY_MESSAGE_ERROR);
+        require(!messageExists(self, _code), CODE_RESERVED_ERROR);
 
         // enter message at code and push code onto storage
         self.messages[_code] = _message;
@@ -35,11 +39,27 @@ library MessagesAndCodes {
         code = _code;
     }
 
+    function autoAddMessage (Data storage self, string _message)
+        public
+        returns (uint8 code)
+    {
+        require(!messageIsEmpty(_message), EMPTY_MESSAGE_ERROR);
+
+        // find next available code to store the message at
+        code = 0;
+        while (messageExists(self, code)) {
+            code++;
+        }
+
+        // add message at the auto-generated code
+        addMessage(self, code, _message);
+    }
+
     function removeMessage (Data storage self, uint8 _code)
         public
         returns (uint8 code)
     {
-        require(messageExists(self, _code), "Code does not point to a message");
+        require(messageExists(self, _code), CODE_UNASSIGNED_ERROR);
 
         // find index of code
         uint8 indexOfCode = 0;
@@ -62,8 +82,8 @@ library MessagesAndCodes {
         public
         returns (uint8 code)
     {
-        require(!messageIsEmpty(_message), "Message is empty");
-        require(messageExists(self, _code), "Code does not point to a message");
+        require(!messageIsEmpty(_message), EMPTY_MESSAGE_ERROR);
+        require(messageExists(self, _code), CODE_UNASSIGNED_ERROR);
 
         // update message at code
         self.messages[_code] = _message;

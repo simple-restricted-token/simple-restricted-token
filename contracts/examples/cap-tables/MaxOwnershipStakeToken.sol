@@ -5,7 +5,7 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// @title SRS-20 that limits the ownership stake all accounts may hold
 /// @author TokenSoft Inc
-contract MaxOwnershipStakeToken is MessagedSRS20 {
+contract MaxOwnershipStakeToken is MessagedSRS20, Ownable {
     using SafeMath for uint256;
     uint8 public MAX_OWNERSHIP_STAKE_CODE = 1;
     uint256 public maximumPercentOwnershipTimesOneThousand;
@@ -53,7 +53,7 @@ contract MaxOwnershipStakeToken is MessagedSRS20 {
         returns (uint8 restrictionCode)
     {
         restrictionCode = SUCCESS_CODE;
-        uint256 expectedRecipientBalance = this.balanceOf(to).plus(value);
+        uint256 expectedRecipientBalance = this.balanceOf(to).add(value);
         uint256 expectedPercentOwnershipTimesOneThousand = getPercentTimesOneThousand(expectedRecipientBalance, this.totalSupply());
         bool exceedsMaxPercentOwnership = expectedPercentOwnershipTimesOneThousand > maximumPercentOwnershipTimesOneThousand;
         if (exceedsMaxPercentOwnership) {

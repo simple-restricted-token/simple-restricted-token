@@ -1,6 +1,6 @@
-const SRS20ReferenceImplMock = artifacts.require('./mocks/SRS20Mock')
+const SimpleRestrictedTokenMock = artifacts.require('./mocks/SimpleRestrictedTokenMock')
 
-contract('SRS20', ([sender, recipient, ...accounts]) => {
+contract('SimpleRestrictedToken', ([sender, recipient, ...accounts]) => {
   const initialAccount = sender
   const transferValue = '100000000000000000'
   const initialBalance = '100000000000000000000'
@@ -10,7 +10,7 @@ contract('SRS20', ([sender, recipient, ...accounts]) => {
   let SUCCESS_CODE
   let SUCCESS_MESSAGE
   before(async () => {
-    token = await SRS20ReferenceImplMock.new(initialAccount, initialBalance)
+    token = await SimpleRestrictedTokenMock.new(initialAccount, initialBalance)
     tokenTotalSupply = await token.totalSupply()
     SUCCESS_CODE = await token.SUCCESS_CODE()
     SUCCESS_MESSAGE = await token.SUCCESS_MESSAGE()
