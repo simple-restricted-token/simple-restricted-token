@@ -1,33 +1,33 @@
-pragma solidity ^0.4.14;
+pragma solidity ^0.4.24;
 import "../../token/SRS20/MessagedSRS20.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-contract MaximumShareholdersToken is Ownable, MessagedSRS20 {
+contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
     using SafeMath for uint256;
-    uint8 public MAX_SHAREHOLDERS_CODE = 1;
+    uint8 public MAX_NUM_SHAREHOLDERS_CODE = 1;
     uint256 public numShareholders = 0;
-    uint256 public maximumShareholders;
+    uint256 public maxNumShareholders;
 
     mapping(address => bool) public isShareholder;
 
-    constructor (uint256 _maximumShareholders, uint8 maxShareholdersCode) public {
-        maximumShareholders = _maximumShareholders;
-        if (maxShareholdersCode > 0) {
-            MAX_SHAREHOLDERS_CODE = maxShareholdersCode;
+    constructor (uint256 _maxNumShareholders, uint8 maxNumShareholdersCode) public {
+        maxNumShareholders = _maxNumShareholders;
+        if (maxNumShareholdersCode > 0) {
+            MAX_NUM_SHAREHOLDERS_CODE = maxNumShareholdersCode;
         }
         messagesAndCodes.addMessage(
-          MAX_SHAREHOLDERS_CODE,
-          "ILLEGAL_TRANSFER_MAXIMUM_SHAREHOLDERS_REACHED"
+          MAX_NUM_SHAREHOLDERS_CODE,
+          "ILLEGAL_TRANSFER_MAXIMUM_NUMBER_OF_SHAREHOLDERS_REACHED"
         );
     }
 
-    function changeMaximumShareholders (uint256 newMaximumShareholders)
+    function changeMaxNumShareholders (uint256 newmaxNumShareholders)
         public
         onlyOwner
     {
-        require(newMaximumShareholders >= numShareholders, "New maximum shareholders must be greater than the current number of shareholders");
-        maximumShareholders = newMaximumShareholders;
+        require(newmaxNumShareholders >= numShareholders, "New maximum number of shareholders must be greater than the current number");
+        maxNumShareholders = newmaxNumShareholders;
     }
 
     function detectTransferRestriction (address from, address to, uint256 value)
@@ -36,13 +36,13 @@ contract MaximumShareholdersToken is Ownable, MessagedSRS20 {
         returns (uint8 restrictionCode)
     {
         restrictionCode = SUCCESS_CODE;
-        bool exceedsMaxShareholders = numShareholders < maximumShareholders;
+        bool exceedsMaxShareholders = numShareholders < maxNumShareholders;
         if (exceedsMaxShareholders) {
-            restrictionCode = MAX_SHAREHOLDERS_CODE;
+            restrictionCode = MAX_NUM_SHAREHOLDERS_CODE;
         }
     }
 
-    function addOrRemoveShareholder (address from, address to, uint256 value)
+    function recordShareholder (address from, address to, uint256 value)
         internal
     {
         bool addingShareholder = !isShareholder[to];
@@ -61,7 +61,7 @@ contract MaximumShareholdersToken is Ownable, MessagedSRS20 {
         public
         returns (bool success)
     {
-        addOrRemoveShareholder(msg.sender, to, value);
+        recordShareholder(msg.sender, to, value);
         success = super.transfer(to, value);
     }
 
@@ -69,7 +69,7 @@ contract MaximumShareholdersToken is Ownable, MessagedSRS20 {
         public
         returns (bool success)
     {
-        addOrRemoveShareholder(from, to, value);
+        recordShareholder(from, to, value);
         success = super.transferFrom(from, to, value);
     }
 }
