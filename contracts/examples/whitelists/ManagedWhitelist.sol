@@ -6,12 +6,12 @@ contract ManagedWhitelist is Managed {
     mapping (address => bool) public receiveAllowed;
 
     modifier onlySendAllowed {
-        require(sendAllowed[msg.sender]);
+        require(sendAllowed[msg.sender], "Sender is not whitelisted");
         _;
     }
 
     modifier onlyReceiveAllowed {
-        require(receiveAllowed[msg.sender]);
+        require(receiveAllowed[msg.sender], "Recipient is not whitelisted");
         _;
     }
 
