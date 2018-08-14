@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
 import "./BasicTokenMock.sol";
-import "../examples/ManagedWhitelistToken.sol";
+import "../examples/whitelists/ManagedWhitelistToken.sol";
 
 contract ManagedWhitelistTokenMock is BasicTokenMock, ManagedWhitelistToken {
     constructor (

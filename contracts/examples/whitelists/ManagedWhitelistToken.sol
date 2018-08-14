@@ -1,16 +1,16 @@
 pragma solidity ^0.4.24;
-import "./MessagedSRS20.sol";
 import "./ManagedWhitelist.sol";
+import "../../token/SRS20/MessagedSRS20.sol";
 
 contract ManagedWhitelistToken is MessagedSRS20, ManagedWhitelist {
-    uint public sendNotAllowedCode = 2;
-    uint public receiveNotAllowedCode = 3;
+    uint8 public sendNotAllowedCode = 1;
+    uint8 public receiveNotAllowedCode = 2;
     
-    constructor (uint _sendNotAllowedCode, uint _receiveNotAllowedCode) public {
-        if (_sendNotAllowedCode > 1) {
+    constructor (uint8 _sendNotAllowedCode, uint8 _receiveNotAllowedCode) public {
+        if (_sendNotAllowedCode > 0) {
             sendNotAllowedCode = _sendNotAllowedCode;
         }
-        if (_receiveNotAllowedCode > 1) {
+        if (_receiveNotAllowedCode > 0) {
             receiveNotAllowedCode = _receiveNotAllowedCode;
         }
         messagesAndCodes.addMessage(
@@ -26,7 +26,7 @@ contract ManagedWhitelistToken is MessagedSRS20, ManagedWhitelist {
     function detectTransferRestriction (address from, address to, uint value)
         public
         view
-        returns (uint restrictionCode)
+        returns (uint8 restrictionCode)
     {
         if (!sendAllowed[from]) {
             restrictionCode = sendNotAllowedCode; // sender address not whitelisted

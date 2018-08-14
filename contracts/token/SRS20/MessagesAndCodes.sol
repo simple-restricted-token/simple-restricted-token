@@ -2,8 +2,8 @@ pragma solidity ^0.4.24;
 
 library MessagesAndCodes {
     struct Data {
-        mapping (uint => string) messages;
-        uint[] codes;
+        mapping (uint8 => string) messages;
+        uint8[] codes;
     }
 
     function messageIsEmpty (string _message)
@@ -14,7 +14,7 @@ library MessagesAndCodes {
         isEmpty = bytes(_message).length == 0;
     }
 
-    function messageExists (Data storage self, uint _code)
+    function messageExists (Data storage self, uint8 _code)
         internal
         view
         returns (bool exists)
@@ -22,9 +22,9 @@ library MessagesAndCodes {
         exists = bytes(self.messages[_code]).length > 0;
     }
 
-    function addMessage (Data storage self, uint _code, string _message)
+    function addMessage (Data storage self, uint8 _code, string _message)
         public
-        returns (uint code)
+        returns (uint8 code)
     {
         require(!messageIsEmpty(_message));
         require(!messageExists(self, _code));
@@ -35,20 +35,20 @@ library MessagesAndCodes {
         code = _code;
     }
 
-    function removeMessage (Data storage self, uint _code)
+    function removeMessage (Data storage self, uint8 _code)
         public
-        returns (uint code)
+        returns (uint8 code)
     {
         require(messageExists(self, _code));
 
         // find index of code
-        uint indexOfCode = 0;
+        uint8 indexOfCode = 0;
         while (self.codes[indexOfCode] != _code) {
             indexOfCode++;
         }
 
         // remove code from storage by shifting codes in array
-        for (uint i = indexOfCode; i < self.codes.length - 1; i++) {
+        for (uint8 i = indexOfCode; i < self.codes.length - 1; i++) {
             self.codes[i] = self.codes[i + 1];
         }
         self.codes.length--;
@@ -58,9 +58,9 @@ library MessagesAndCodes {
         code = _code;
     }
 
-    function updateMessage (Data storage self, uint _code, string _message)
+    function updateMessage (Data storage self, uint8 _code, string _message)
         public
-        returns (uint code)
+        returns (uint8 code)
     {
         require(!messageIsEmpty(_message));
         require(messageExists(self, _code));

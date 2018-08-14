@@ -125,23 +125,18 @@ contract('ManagedWhitelistTokenMock', ([owner, ...accounts]) => {
   //   const [sender, receiver] = accounts 
   // })
 
-  it('should return message "UNKNOWN for restriction code of 0', async () => {
-    const message = await token.messageForTransferRestriction(0)
-    assert.equal(message, 'UNKNOWN')
-  })
-
   it('should return message "SUCCESS" for restriction code of 1', async () => {
-    const message = await token.messageForTransferRestriction(1)
+    const message = await token.messageForTransferRestriction(0)
     assert.equal(message, 'SUCCESS')
   })
 
   it('should return message "ILLEGAL_TRANSFER_SENDING_ACCOUNT_NOT_WHITELISTED" for restriction code of 2', async () => {
-    const message = await token.messageForTransferRestriction(2)
+    const message = await token.messageForTransferRestriction(1)
     assert.equal(message, 'ILLEGAL_TRANSFER_SENDING_ACCOUNT_NOT_WHITELISTED')
   })
 
   it('should return message "ILLEGAL_TRANSFER_RECEIVING_ACCOUNT_NOT_WHITELISTED" for restriction code of 3', async () => {
-    const message = await token.messageForTransferRestriction(3)
+    const message = await token.messageForTransferRestriction(2)
     assert.equal(message, 'ILLEGAL_TRANSFER_RECEIVING_ACCOUNT_NOT_WHITELISTED')
   })
 })

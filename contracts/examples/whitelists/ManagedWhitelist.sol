@@ -1,5 +1,5 @@
 pragma solidity ^0.4.24;
-import "./Managed.sol";
+import "../../ownership/Managed.sol";
 
 contract ManagedWhitelist is Managed {
     mapping (address => bool) public sendAllowed;

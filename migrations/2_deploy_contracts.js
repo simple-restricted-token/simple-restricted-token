@@ -32,7 +32,7 @@ module.exports = function(deployer, network, [initialAccount, ...accounts]) {
         BasicWhitelistTokenMock,
         initialAccount,
         initialBalance,
-        2 // nonWhitelistCode
+        1 // nonWhitelistCode
       )
 
       // deploy ManagedWhitelistTokenMock for tests
@@ -40,8 +40,8 @@ module.exports = function(deployer, network, [initialAccount, ...accounts]) {
         ManagedWhitelistTokenMock,
         initialAccount,
         initialBalance,
-        2, // sendNotAllowedCode
-        3 // receiveNotAllowedCode
+        1, // sendNotAllowedCode
+        2 // receiveNotAllowedCode
       )
     } catch (err) {
       console.log(('Failed to Deploy Contracts', err))

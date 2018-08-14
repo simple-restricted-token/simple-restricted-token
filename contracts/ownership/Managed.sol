@@ -5,12 +5,15 @@ contract Managed is Ownable {
     mapping (address => bool) public managers;
     
     modifier onlyManager () {
-        require(isManager());
+        require(isManager(), "Only managers may perform this action");
         _;
     }
 
     modifier onlyManagerOrOwner () {
-        require(checkManagerStatus(msg.sender) || msg.sender == owner);
+        require(
+            checkManagerStatus(msg.sender) || msg.sender == owner,
+            "Only managers or owners may perform this action"
+        );
         _;
     }
 
