@@ -3,17 +3,10 @@ import "./BasicTokenMock.sol";
 import "../examples/whitelists/ManagedWhitelistToken.sol";
 
 contract ManagedWhitelistTokenMock is BasicTokenMock, ManagedWhitelistToken {
-    constructor (
-      address initialAccount,
-      uint256 initialBalance,
-      uint8 sendNotAllowedCode,
-      uint8 receiveNotAllowedCode
-    )
+    constructor (address initialAccount, uint256 initialBalance)
         BasicTokenMock(initialAccount, initialBalance)
-        ManagedWhitelistToken(sendNotAllowedCode, receiveNotAllowedCode)
         public
     {
-        addToSendAllowed(initialAccount);
-        addToReceiveAllowed(initialAccount);
+        addToBothSendAndReceiveAllowed(initialAccount);
     }
 }
