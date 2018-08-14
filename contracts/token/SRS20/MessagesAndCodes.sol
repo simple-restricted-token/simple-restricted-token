@@ -26,8 +26,8 @@ library MessagesAndCodes {
         public
         returns (uint8 code)
     {
-        require(!messageIsEmpty(_message));
-        require(!messageExists(self, _code));
+        require(!messageIsEmpty(_message), "Message is empty");
+        require(!messageExists(self, _code), "Code already points to a message");
 
         // enter message at code and push code onto storage
         self.messages[_code] = _message;
@@ -39,7 +39,7 @@ library MessagesAndCodes {
         public
         returns (uint8 code)
     {
-        require(messageExists(self, _code));
+        require(messageExists(self, _code), "Code does not point to a message");
 
         // find index of code
         uint8 indexOfCode = 0;
@@ -62,8 +62,8 @@ library MessagesAndCodes {
         public
         returns (uint8 code)
     {
-        require(!messageIsEmpty(_message));
-        require(messageExists(self, _code));
+        require(!messageIsEmpty(_message), "Message is empty");
+        require(messageExists(self, _code), "Code does not point to a message");
 
         // update message at code
         self.messages[_code] = _message;
