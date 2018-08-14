@@ -1,7 +1,7 @@
 # SRS-20: Simple Restricted Token Standard
 
 SRS-20 is an easily extendable standard for issuing tokens with transfer restrictions.  
-See the [EIP draft](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
+Read the [EIP draft](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
 
 ## The Standard
 The SRS-20 standard builds on ERC-20's interface, adding two functions:
