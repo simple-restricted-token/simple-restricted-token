@@ -11,7 +11,7 @@ contract SimpleRestrictedToken is SRS20, StandardToken {
 
     modifier notRestricted (address from, address to, uint256 value) {
         uint8 restrictionCode = detectTransferRestriction(from, to, value);
-        require(restrictionCode != SUCCESS_CODE, messageForTransferRestriction(restrictionCode));
+        require(restrictionCode == SUCCESS_CODE, messageForTransferRestriction(restrictionCode));
         _;
     }
     
