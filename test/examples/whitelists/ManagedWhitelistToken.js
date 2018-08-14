@@ -9,10 +9,12 @@ contract('ManagedWhitelistToken', ([owner, manager, operator, ...accounts]) => {
   let tokenTotalSupply
   let sender = owner
   let recipient = operator
-  let SEND_NOT_ALLOWED_CODE;
-  let SEND_NOT_ALLOWED_ERROR;
-  let RECEIVE_NOT_ALLOWED_CODE;
-  let RECEIVE_NOT_ALLOWED_ERROR;
+  let SUCCESS_CODE
+  let SUCCESS_MESSAGE
+  let SEND_NOT_ALLOWED_CODE
+  let SEND_NOT_ALLOWED_ERROR
+  let RECEIVE_NOT_ALLOWED_CODE
+  let RECEIVE_NOT_ALLOWED_ERROR
   before(async () => {
     token = await ManagedWhitelistTokenMock.new(initialAccount, initialBalance)
     tokenTotalSupply = await token.totalSupply()
@@ -38,7 +40,7 @@ contract('ManagedWhitelistToken', ([owner, manager, operator, ...accounts]) => {
   })
   
   it('should detect restriction for transfer to non-whitelisted recipient', async () => {
-    const code = await token.detectTransferRestriction(sender, recipient, transferValue);
+    const code = await token.detectTransferRestriction(sender, recipient, transferValue)
     assert(code.eq(RECEIVE_NOT_ALLOWED_CODE))
   })
 
@@ -86,7 +88,7 @@ contract('ManagedWhitelistToken', ([owner, manager, operator, ...accounts]) => {
   })
 
   it('should detect restriction for transfer from non-whitelisted sender', async () => {
-    const code = await token.detectTransferRestriction(operator, owner, transferValue);
+    const code = await token.detectTransferRestriction(operator, owner, transferValue)
     assert(code.eq(SEND_NOT_ALLOWED_CODE))
   })
 

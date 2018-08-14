@@ -1,38 +1,34 @@
 pragma solidity ^0.4.24;
 import "../../token/SRS20/MessagedSRS20.sol";
-import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-/// @title SRS-20 that limits the number of accounts that can hold a token balance
+/// @title SRS-20 that limits the number of accounts to hold a token balance
 /// @author TokenSoft Inc
 contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
     using SafeMath for uint256;
-    uint8 public MAX_NUM_SHAREHOLDERS_CODE = 1;
     uint256 public numShareholders = 0;
     uint256 public maxNumShareholders;
-
+    uint8 public MAX_NUM_SHAREHOLDERS_CODE;
+    string public constant MAX_NUM_SHAREHOLDERS_ERROR = "ILLEGAL_TRANSFER_MAXIMUM_NUMBER_OF_SHAREHOLDERS_REACHED";
+    string public constant NEW_MAX_NUM_SHAREHOLDERS_ERROR = "New max number of shareholder accounts must be greater than the current amount";
     mapping(address => bool) public isShareholder;
 
-    constructor (uint256 _maxNumShareholders, uint8 maxNumShareholdersCode) public {
+    event ShareholderAdded(address indexed shareholder);
+    event ShareholderReplaced(address indexed newShareholder, address indexed prevShareholder);
+    event ChangedMaxNumShareholders(uint256 newMaxNumShareholders, uint256 prevMaxNumShareholders);
+
+    constructor (uint256 _maxNumShareholders) public {
         maxNumShareholders = _maxNumShareholders;
-        if (maxNumShareholdersCode > 0) {
-            MAX_NUM_SHAREHOLDERS_CODE = maxNumShareholdersCode;
-        }
-        messagesAndCodes.addMessage(
-          MAX_NUM_SHAREHOLDERS_CODE,
-          "ILLEGAL_TRANSFER_MAXIMUM_NUMBER_OF_SHAREHOLDERS_REACHED"
-        );
+        MAX_NUM_SHAREHOLDERS_CODE = messagesAndCodes.autoAddMessage(MAX_NUM_SHAREHOLDERS_ERROR);
     }
 
-    function changeMaxNumShareholders (uint256 newMaxNumShareholders)
+    function changeMaxNumShareholders (uint256 _maxNumShareholders)
         public
         onlyOwner
     {
-        require(
-            newMaxNumShareholders >= numShareholders,
-            "New max number of shareholder accounts must be greater than the current amount"
-        );
-        maxNumShareholders = newMaxNumShareholders;
+        require(_maxNumShareholders >= numShareholders, NEW_MAX_NUM_SHAREHOLDERS_ERROR);
+        emit ChangedMaxNumShareholders(_maxNumShareholders, maxNumShareholders);
+        maxNumShareholders = _maxNumShareholders;
     }
 
     function detectTransferRestriction (address from, address to, uint256 value)
@@ -41,7 +37,7 @@ contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
         returns (uint8 restrictionCode)
     {
         restrictionCode = SUCCESS_CODE;
-        bool exceedsMaxShareholders = numShareholders < maxNumShareholders;
+        bool exceedsMaxShareholders = numShareholders > maxNumShareholders;
         if (exceedsMaxShareholders) {
             restrictionCode = MAX_NUM_SHAREHOLDERS_CODE;
         }
@@ -50,15 +46,23 @@ contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
     function recordShareholder (address from, address to, uint256 value)
         internal
     {
-        bool addingShareholder = !isShareholder[to];
-        bool removingShareholder = this.balanceOf(from).sub(value) == 0;
-        if (addingShareholder) {
-            numShareholders = numShareholders.add(1);
-            isShareholder[to] = true;
+        bool senderNotAdded = !isShareholder[from];
+        if (senderNotAdded) {
+            numShareholders++;
+            isShareholder[from] = true;
+            emit ShareholderAdded(from);
         }
-        if (removingShareholder) {
-            numShareholders = numShareholders.sub(1);
+        bool shareholderAdded = !isShareholder[to];
+        if (shareholderAdded) {
+            numShareholders++;
+            isShareholder[to] = true;
+            emit ShareholderAdded(to);
+        }
+        bool shareholderReplaced = (this.balanceOf(from) - value) == 0;
+        if (shareholderReplaced) {
+            numShareholders--;
             isShareholder[from] = false;
+            emit ShareholderReplaced(to, from);
         }
     }
 
