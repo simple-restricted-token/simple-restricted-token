@@ -7,44 +7,34 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 /// @author TokenSoft Inc
 contract MaxOwnershipStakeToken is MessagedSRS20, Ownable {
     using SafeMath for uint256;
-    uint8 public MAX_OWNERSHIP_STAKE_CODE = 1;
-    uint256 public maximumPercentOwnershipTimesOneThousand;
+    uint8 public MAX_OWNERSHIP_STAKE_CODE;
+    uint256 public maxPercentOwnershipTimesOneThousand;
+    string public constant MAX_OWNERSHIP_STAKE_ERROR = "ILLEGAL_TRANSFER_MAXIMUM_OWNERSHIP_STAKE_REACHED_FOR_RECIPIENT";
+    string public constant PERCENT_OUT_OF_BOUNDS_ERROR = "Maximum percent ownership times 1000 must be less than or equal to 1000";
 
-    constructor (uint256 _maximumPercentOwnershipTimesOneThousand, uint8 maxOwnershipStakeCode) public {
-        require(
-            _maximumPercentOwnershipTimesOneThousand <= 1000,
-            "Maximum percent ownership times 1000 must be less than or equal to 1000"
-        );
-        maximumPercentOwnershipTimesOneThousand = _maximumPercentOwnershipTimesOneThousand;
-        if (maxOwnershipStakeCode > 0) {
-            MAX_OWNERSHIP_STAKE_CODE = maxOwnershipStakeCode;
-        }
-        messagesAndCodes.addMessage(
-            MAX_OWNERSHIP_STAKE_CODE,
-            "ILLEGAL_TRANSFER_MAXIMUM_OWNERSHIP_STAKE_REACHED_FOR_RECIPIENT"
-        );
+    constructor (uint256 _maxPercentOwnershipTimesOneThousand) public {
+        require(_maxPercentOwnershipTimesOneThousand <= 1000, PERCENT_OUT_OF_BOUNDS_ERROR);
+        maxPercentOwnershipTimesOneThousand = _maxPercentOwnershipTimesOneThousand;
+        MAX_OWNERSHIP_STAKE_CODE = messagesAndCodes.autoAddMessage(MAX_OWNERSHIP_STAKE_ERROR);
     }
 
-    function changeMaximumPercentOwnership (uint256 _maximumPercentOwnershipTimesOneThousand)
+    function changeMaximumPercentOwnership (uint256 _maxPercentOwnershipTimesOneThousand)
         public
         onlyOwner
     {
-        require(
-            _maximumPercentOwnershipTimesOneThousand <= 1000,
-            "Maximum percent ownership times 1000 must be less than or equal to 1000"
-        );
-        maximumPercentOwnershipTimesOneThousand = _maximumPercentOwnershipTimesOneThousand;
+        require(_maxPercentOwnershipTimesOneThousand <= 1000, PERCENT_OUT_OF_BOUNDS_ERROR);
+        maxPercentOwnershipTimesOneThousand = _maxPercentOwnershipTimesOneThousand;
     }
 
-    function getPercentTimesOneThousand(uint256 part, uint256 whole)
-        public
+    function calcPercentTimesOneThousand(uint256 part, uint256 whole)
+        internal
         pure
         returns (uint256)
     {
-        uint256 numerator = part.mul(1000);
-        require(numerator > part, "Overflow");
-        uint256 temp = numerator.div(whole.add(5)); // proper rounding up
-        return temp.div(10);
+        uint256 numerator = part.mul(10000);
+        require(numerator > part, "Integer overflow");
+        uint256 quotient = numerator.div(whole).add(5).div(10);
+        return quotient;
     }
 
     function detectTransferRestriction (address from, address to, uint256 value)
@@ -54,8 +44,8 @@ contract MaxOwnershipStakeToken is MessagedSRS20, Ownable {
     {
         restrictionCode = SUCCESS_CODE;
         uint256 expectedRecipientBalance = this.balanceOf(to).add(value);
-        uint256 expectedPercentOwnershipTimesOneThousand = getPercentTimesOneThousand(expectedRecipientBalance, this.totalSupply());
-        bool exceedsMaxPercentOwnership = expectedPercentOwnershipTimesOneThousand > maximumPercentOwnershipTimesOneThousand;
+        uint256 expectedPercentOwnershipTimesOneThousand = calcPercentTimesOneThousand(expectedRecipientBalance, this.totalSupply());
+        bool exceedsMaxPercentOwnership = expectedPercentOwnershipTimesOneThousand > maxPercentOwnershipTimesOneThousand;
         if (exceedsMaxPercentOwnership) {
             restrictionCode = MAX_OWNERSHIP_STAKE_CODE;
         }

@@ -2,6 +2,7 @@ var MessagesAndCodes = artifacts.require('./libraries/MessagesAndCodes')
 var SimpleRestrictedTokenMock = artifacts.require('./mocks/SimpleRestrictedTokenMock')
 var BasicWhitelistTokenMock = artifacts.require('./mocks/BasicWhitelistTokenMock')
 var ManagedWhitelistTokenMock = artifacts.require('./mocks/ManagedWhitelistTokenMock')
+var MaxOwnershipStakeTokenMock = artifacts.require('./mocks/MaxOwnershipStakeTokenMock')
 var MaxNumShareholdersTokenMock = artifacts.require('./mocks/MaxNumShareholdersTokenMock')
 
 module.exports = function (deployer) {
@@ -12,6 +13,7 @@ module.exports = function (deployer) {
       await deployer.link(MessagesAndCodes, [
         BasicWhitelistTokenMock,
         ManagedWhitelistTokenMock,
+        MaxOwnershipStakeTokenMock,
         MaxNumShareholdersTokenMock
       ])
     } catch (err) {
