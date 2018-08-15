@@ -7,16 +7,11 @@ contract('MaxNumShareholdersToken', ([owner, sh2, sh3, sh4, ...accounts]) => {
   const maxNumShareholders = 3
 
   let token
-  let tokenTotalSupply
   let sender = owner
-  let SUCCESS_CODE;
-  let SUCCESS_MESSAGE;
   let MAX_NUM_SHAREHOLDERS_CODE;
   let MAX_NUM_SHAREHOLDERS_ERROR;
   before(async () => {
     token = await MaxNumShareHoldersTokenMock.new(initialAccount, initialBalance, maxNumShareholders)
-    SUCCESS_CODE = await token.SUCCESS_CODE()
-    SUCCESS_MESSAGE = await token.SUCCESS_MESSAGE()
     MAX_NUM_SHAREHOLDERS_CODE = await token.MAX_NUM_SHAREHOLDERS_CODE()
     MAX_NUM_SHAREHOLDERS_ERROR = await token.MAX_NUM_SHAREHOLDERS_ERROR()
   })
