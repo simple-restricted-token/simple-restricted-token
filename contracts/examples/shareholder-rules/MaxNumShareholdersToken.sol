@@ -5,7 +5,6 @@ import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 /// @title SRS-20 that limits the number of accounts to hold a token balance
 /// @author TokenSoft Inc
 contract MaxNumShareholdersToken is Ownable, MessagedSRS20 {
-    using SafeMath for uint256;
     uint256 public numShareholders = 0;
     uint256 public maxNumShareholders;
     uint8 public MAX_NUM_SHAREHOLDERS_CODE;
