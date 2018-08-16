@@ -18,10 +18,10 @@ contract SRS20 is ERC20 {
 
 Several common transfer restriction patterns implemented on SRS-20:
 
-1.  [Cap Tables](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/cap-tables)
-2.  Lock-Up Periods - Coming Soon
-3.  [Maximum Shareholder Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/shareholder-rules)
-4.  [Whitelisted Investor Addresses](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
+1.  [Account Ownership Percentage](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/cap-tables)
+2.  Account Holding Periods - Coming Soon
+3.  [Number of Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/shareholder-rules)
+4.  [Whitelisted Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
 
 <!-- ### Prominent Examples
 
