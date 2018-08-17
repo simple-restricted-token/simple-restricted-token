@@ -6,8 +6,13 @@ Read the [EIP draft](https://github.com/tokensoft/simple-restricted-token-standa
 ## The Standard
 The SRS-20 standard builds on ERC-20's interface, adding two functions:
 ```solidity
+// The SRS-20 Interface
+
 contract SRS20 is ERC20 {
+  // returns a restriction code, where 0 is reserved for success
   function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);
+
+  // returns a messsage string -- a human-readable message for the passed restriction code 
   function messageForTransferRestriction (uint8 restrictionCode) public view returns (string);
 }
 ```
