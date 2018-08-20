@@ -16,7 +16,7 @@ created: 2018-07-27
 
 <!--"If you can't explain it simply, you don't understand it well enough." Provide a simplified and layman-accessible explanation of the EIP.-->
 
-A simple and interoperable standard for issuing tokens with transfer restrictions. The following draws on input from top issuers, law firms, relavent US regulatory bodies, and exchanges.
+A simple and interoperable standard for issuing tokens with transfer restrictions. The following draws on input from top issuers, law firms, relevant US regulatory bodies, and exchanges.
 
 ## Abstract
 
