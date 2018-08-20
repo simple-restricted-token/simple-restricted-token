@@ -32,6 +32,6 @@ Several common transfer restriction patterns implemented on SRS-20:
 
 We have included example implementations of the following high-profile standards proposals on top of SRS-20:
 
-1.  [PolyMath's ST20 Token](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/other-standards)
+1.  [PolyMath's ST-20 Token](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/other-standards)
 2.  Harbor's R-Token - Coming Soon
 3.  Delaware General Corporations Law (DCGL) ERC-884 Token - Coming Soon
