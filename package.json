@@ -21,6 +21,7 @@
   "devDependencies": {
     "bignumber.js": "^7.2.1",
     "chai": "^4.1.2",
+    "hex2ascii": "^0.0.3",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.3"
   },
