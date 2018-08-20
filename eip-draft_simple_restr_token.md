@@ -90,7 +90,7 @@ The standard proposes two functions and an event on top of the ERC-20 standard. 
 <!--All EIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The EIP must explain how the author proposes to deal with these incompatibilities. EIP submissions without a sufficient backwards compatibility treatise may be rejected outright.-->
 
 By design SRS-20 is fully backwards compatible with ERC-20.  
-Some examples of how it may be integrated with common types of restricted tokens may be found [here](#link-to-examples-repo).
+Some examples of how it may be integrated with common types of restricted tokens may be found [here](https://github.com/tokensoft/simple-restricted-token-standard#readme).
 
 ## Test Cases & Implementation
 
