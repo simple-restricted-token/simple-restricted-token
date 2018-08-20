@@ -1,7 +1,7 @@
 ---
 eip: <to be assigned>
-title: SRS-20: Simple Restricted Token Standard
-authors: TokenSoft Inc (@tokensoft)
+title: Simple Restricted Token Standard
+authors: Ron Gierlach, James Poole, Mason Borda 
 status: Draft
 type: Standards
 category (*only required for Standard Track): ERC
@@ -10,27 +10,25 @@ created: 2018-07-27
 
 <!--You can leave these HTML comments in your merged EIP and delete the visible duplicate text guides, they will not appear and may be helpful to refer to if you edit it again. This is the suggested template for new EIPs. Note that an EIP number will be assigned by an editor. When opening a pull request to submit your EIP, please use an abbreviated title in the filename, `eip-draft_title_abbrev.md`. The title should be 44 characters or less.-->
 
-# SRS-20: Simple Restricted Token Standard
+# Simple Restricted Token Standard
 
 ## Simple Summary
 
 <!--"If you can't explain it simply, you don't understand it well enough." Provide a simplified and layman-accessible explanation of the EIP.-->
 
-A simple and interoperable standard for issuing tokens with transfer restrictions.
+A simple and interoperable standard for issuing tokens with transfer restrictions. The following draws on input from top issuers, law firms, relavent US regulatory bodies, and exchanges.
 
 ## Abstract
 
 <!--A short (~200 word) description of the technical issue being addressed.-->
 
-Tokens with transfer restrictions lack a unifying interface for enforcing their restrictions and reporting subsequent errors.
-
-An interoperable standard addressing this disunion will stimulate the next wave of integration for security token focused wallets, exchanges, and issuers.
+Current ERC token standards have provided the community with a platform on which we have been able to develop a broad economy that is focused on building Ethereum application that interface with the real world. As these applications mature into the real world they begin to interface with corporate governance requirements as well as regulatory requirements. This interface must not only be able to interface with corporate and regulatory requirements but also with the technology platforms underpinning the associated businesses. This is a simple and interoperable standard that can very simply integrate into wallets, exchanges, and issuers.
 
 ## Motivation
 
 <!--The motivation is critical for EIPs that want to change the Ethereum protocol. It should clearly explain why the existing protocol specification is inadequate to address the problem that the EIP solves. EIP submissions without sufficient motivation may be rejected outright.-->
 
-There are many exciting use-cases for tokens with transfer restrictions.
+Current regulatory and corporate requirements require that tokens with association to legal entities follow regulatory and corporate governance requirements. Current implementations that seek to solve this problem have yet to meet practical implementation requirements. Regulatory and corporate governance requirements manifest in the form of restrictions placed on a base ERC-20 token.
 
 A few emergent examples:
 
@@ -41,9 +39,7 @@ A few emergent examples:
 
 Furthermore, standards adoption amongst token issuers has the potential to evolve into a dynamic and interoperable landscape of automated compliance.
 
-However, the current trend of ~~proposing~~ marketing token standards as solutions for individual use-cases poses a threat to future interoperability within the tokenized ecosystem. Specifically this compromises the usability of security tokens and the exchanges that wish to support them.
-
-It is our belief that a simplistic underlying standard, which may be easily extended for varying compliance needs, is a far more forward-thinking approach. The following design gives greater freedom / upgradability to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
+The following design gives greater freedom / upgradability to token issuers and simultaneously decreases the burden of integration for developers and exchanges.
 
 Additionally, we see fit to provide a pattern by which human-readable messages may be returned when token transfers are reverted. Transparency as to _why_ a token's transfer was reverted is of equal importance to the successful enforcement of the transfer restriction itself.
 
