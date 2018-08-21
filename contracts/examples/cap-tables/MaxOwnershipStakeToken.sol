@@ -32,7 +32,6 @@ contract MaxOwnershipStakeToken is MessagedSRS20, Ownable {
         returns (uint256)
     {
         uint256 numerator = part.mul(10000);
-        require(numerator > part, "Integer overflow");
         uint256 quotient = numerator.div(whole).add(5).div(10);
         return quotient;
     }
