@@ -12,6 +12,11 @@ contract MaxOwnershipStakeToken is MessagedSRS20, Ownable {
     string public constant MAX_OWNERSHIP_STAKE_ERROR = "ILLEGAL_TRANSFER_MAXIMUM_OWNERSHIP_STAKE_REACHED_FOR_RECIPIENT";
     string public constant PERCENT_OUT_OF_BOUNDS_ERROR = "Maximum percent ownership times 1000 must be less than or equal to 1000";
 
+    event ChangedMaxOwnershipStake(
+      uint256 newMaxPercentOwnershipTimesOneThousand,
+      uint256 oldMaxPercentOwnershipTimesOneThousand
+    );
+
     constructor (uint256 _maxPercentOwnershipTimesOneThousand) public {
         require(_maxPercentOwnershipTimesOneThousand <= 1000, PERCENT_OUT_OF_BOUNDS_ERROR);
         maxPercentOwnershipTimesOneThousand = _maxPercentOwnershipTimesOneThousand;
@@ -23,11 +28,15 @@ contract MaxOwnershipStakeToken is MessagedSRS20, Ownable {
         onlyOwner
     {
         require(_maxPercentOwnershipTimesOneThousand <= 1000, PERCENT_OUT_OF_BOUNDS_ERROR);
+        emit ChangedMaxOwnershipStake(
+            _maxPercentOwnershipTimesOneThousand,
+            maxPercentOwnershipTimesOneThousand
+        );
         maxPercentOwnershipTimesOneThousand = _maxPercentOwnershipTimesOneThousand;
     }
 
     function calcPercentTimesOneThousand(uint256 part, uint256 whole)
-        internal
+        public
         pure
         returns (uint256)
     {
