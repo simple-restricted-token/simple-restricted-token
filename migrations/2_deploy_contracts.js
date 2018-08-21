@@ -4,6 +4,7 @@ var BasicWhitelistTokenMock = artifacts.require('./mocks/BasicWhitelistTokenMock
 var ManagedWhitelistTokenMock = artifacts.require('./mocks/ManagedWhitelistTokenMock')
 var MaxOwnershipStakeTokenMock = artifacts.require('./mocks/MaxOwnershipStakeTokenMock')
 var MaxNumShareholdersTokenMock = artifacts.require('./mocks/MaxNumShareholdersTokenMock')
+var IndividualOwnershipStakeTokenMock = artifacts.require('./mocks/IndividualOwnershipStakeTokenMock')
 var ST20ExampleMock = artifacts.require('./mocks/ST20ExampleMock')
 
 module.exports = function (deployer) {
@@ -16,6 +17,7 @@ module.exports = function (deployer) {
         ManagedWhitelistTokenMock,
         MaxOwnershipStakeTokenMock,
         MaxNumShareholdersTokenMock,
+        IndividualOwnershipStakeTokenMock,
         ST20ExampleMock
       ])
     } catch (err) {
