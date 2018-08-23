@@ -29,5 +29,5 @@ contract RegulatorService {
    *
    * @return The human-readable mesage string.
    */
-  function messageForReason(uint8 reason) public view returns (string);
+  function messageForReason(uint8 _reason) public view returns (string);
 }
