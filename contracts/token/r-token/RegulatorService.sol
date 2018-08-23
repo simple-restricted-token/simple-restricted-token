@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-/// @notice Standard interface for `RegulatorService`s
+/// @notice Standard interface for `RegulatorService`s extended for SRS-20 compatability
 contract RegulatorService {
 
   /*
@@ -20,4 +20,14 @@ contract RegulatorService {
    *               to assign meaning.
    */
   function check(address _token, address _spender, address _from, address _to, uint256 _amount) public returns (uint8);
+
+  /*
+   * @notice Returns the error message for a passed failed check reason.
+   *
+   * @param  _reason The reason code: 0 means success.  Non-zero values are left to the implementation
+   *                 to assign meaning.
+   *
+   * @return The human-readable mesage string.
+   */
+  function messageForReason(uint8 reason) public view returns (string);
 }
