@@ -23,7 +23,7 @@ contract SRS20 is ERC20 {
 
 Several common transfer restriction patterns implemented on SRS-20:
 
-1.  [Account Ownership Percentage](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/cap-tables)
+1.  [Account Ownership Percentage](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/ownership-percentage)
 2.  Account Holding Periods - Coming Soon
 3.  [Number of Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/shareholder-rules)
 4.  [Whitelisted Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
