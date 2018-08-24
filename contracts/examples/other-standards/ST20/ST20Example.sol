@@ -1,6 +1,6 @@
 pragma solidity ^0.4.24;
-import "../../token/ST20/ST20Token.sol"; 
-import "../../token/SRS20/MessagedSRS20.sol";
+import "../../../token/ST20/ST20Token.sol"; 
+import "../../../token/SRS20/MessagedSRS20.sol";
  
 /// @title Example of an ST-20 compliant token built on top of SRS-20
 /// @author TokenSoft Inc
