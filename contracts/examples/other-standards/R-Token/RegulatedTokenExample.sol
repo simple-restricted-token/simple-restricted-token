@@ -3,6 +3,7 @@ pragma solidity ^0.4.18;
 
 import "../../../token/SRS20/SRS20.sol";
 import "../../../token/R-Token/RegulatedToken.sol";
+import '../../../token/R-Token/ServiceRegistry.sol';
 
 contract RegulatedTokenExample is SRS20, RegulatedToken {
     function RegulatedTokenExample(ServiceRegistry _registry, string _name, string _symbol) public
