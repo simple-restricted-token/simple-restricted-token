@@ -27,6 +27,7 @@ Several common transfer restriction patterns implemented on SRS-20:
 2.  Account Holding Periods - Coming Soon
 3.  [Number of Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/shareholder-rules)
 4.  [Whitelisted Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
+5.  Token Divisibility - Coming Soon
 
 ### Other Standards
 
