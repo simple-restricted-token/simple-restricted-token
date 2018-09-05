@@ -1,7 +1,7 @@
 ---
 eip: <to be assigned>
 title: Simple Restricted Token Standard
-authors: Ron Gierlach, James Poole, Mason Borda 
+authors: Ron Gierlach, James Poole, Mason Borda, Lawson Baker
 status: Draft
 type: Standards
 category (*only required for Standard Track): ERC
