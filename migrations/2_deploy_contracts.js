@@ -1,5 +1,5 @@
 var MessagesAndCodes = artifacts.require('./libraries/MessagesAndCodes')
-var SimpleRestrictedTokenMock = artifacts.require('./mocks/SimpleRestrictedTokenMock')
+var IndivisibleTokenMock = artifacts.require('./mocks/IndivisibleTokenMock')
 var BasicWhitelistTokenMock = artifacts.require('./mocks/BasicWhitelistTokenMock')
 var ManagedWhitelistTokenMock = artifacts.require('./mocks/ManagedWhitelistTokenMock')
 var MaxOwnershipStakeTokenMock = artifacts.require('./mocks/MaxOwnershipStakeTokenMock')
@@ -13,6 +13,7 @@ module.exports = function (deployer) {
       // deploy and link MessagesAndCodes lib for MessagedSRS20's
       await deployer.deploy(MessagesAndCodes)
       await deployer.link(MessagesAndCodes, [
+        IndivisibleTokenMock,
         BasicWhitelistTokenMock,
         ManagedWhitelistTokenMock,
         MaxOwnershipStakeTokenMock,
