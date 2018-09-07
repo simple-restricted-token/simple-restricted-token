@@ -27,7 +27,7 @@ Several common transfer restriction patterns implemented on SRS-20:
 2.  Account Holding Periods - Coming Soon
 3.  [Number of Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/number-of-accounts)
 4.  [Account Whitelists](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
-5.  Token Divisibility - Coming Soon
+5.  [Token Divisibility](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/divisibility)
 
 ### Other Standards
 
@@ -35,4 +35,4 @@ We have included example implementations of the following high-profile standards
 
 1.  [Polymath's ST-20 Token](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/ST20)
 2.  [Harbor's R-Token](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/R-Token)
-3.  Delaware General Corporations Law (DCGL) ERC-884 Token - Coming Soon
+3.  Delaware General Corporations Law (DGCL) ERC-884 Token - Coming Soon
