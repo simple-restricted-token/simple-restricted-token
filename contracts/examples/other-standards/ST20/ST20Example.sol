@@ -3,7 +3,6 @@ import "../../../token/ST20/ST20Token.sol";
 import "../../../token/SRS20/MessagedSRS20.sol";
  
 /// @title Example of an ST-20 compliant token built on top of SRS-20
-/// @author TokenSoft Inc
 contract ST20Example is ST20Token, MessagedSRS20 {
     uint8 public ZERO_ADDRESS_RESTRICTION_CODE;
     string public constant ZERO_ADDRESS_RESTRICTION_MESSAGE = "ILLEGAL_TRANSFER_TO_ZERO_ADDRESS";

@@ -5,7 +5,6 @@ import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// @title Reference implementation for ST-20 compliant token on top of SRS-20
-/// @author TokenSoft Inc
 contract ST20Token is IST20, SimpleRestrictedToken, Ownable {
     using SafeMath for uint256;
     

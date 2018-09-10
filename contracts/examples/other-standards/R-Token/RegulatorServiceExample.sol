@@ -7,7 +7,7 @@ import '../../../token/R-Token/RegulatorService.sol';
 
 /**
  * @title  On-chain RegulatorService implementation for approving trades
- * @author Bob Remeika, modified by TokenSoft Inc
+ * @author Originally Bob Remeika, modified by TokenSoft Inc
  * @dev Orignal source: https://github.com/harborhq/r-token/blob/master/contracts/TokenRegulatorService.sol
  */
 contract RegulatorServiceExample is RegulatorService, Ownable {

@@ -4,7 +4,6 @@ import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// @title SRS-20 that limits the ownership stake all accounts may hold
-/// @author TokenSoft Inc
 contract MaxOwnershipStakeToken is MessagedSRS20, Ownable {
     using SafeMath for uint256;
     uint8 public MAX_OWNERSHIP_STAKE_CODE;
