@@ -1,7 +1,7 @@
 # SRS-20: Simple Restricted Token Standard
 
 SRS-20 is an easily extendable standard for issuing tokens with transfer restrictions.  
-Read the [EIP draft](https://github.com/tokensoft/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
+Read the [EIP draft](https://github.com/simple-restricted-token/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
 
 ## The Standard
 The SRS-20 standard builds on ERC-20's interface, adding two functions:
@@ -23,16 +23,16 @@ contract SRS20 is ERC20 {
 
 Several common transfer restriction patterns implemented on SRS-20:
 
-1.  [Account Ownership Percentage](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/ownership-percentage)
+1.  [Account Ownership Percentage](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/ownership-percentage)
 2.  Account Holding Periods - Coming Soon
-3.  [Number of Accounts](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/number-of-accounts)
-4.  [Account Whitelists](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
-5.  [Token Divisibility](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/divisibility)
+3.  [Number of Accounts](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/number-of-accounts)
+4.  [Account Whitelists](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
+5.  [Token Divisibility](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/divisibility)
 
 ### Other Standards
 
 We have included example implementations of the following high-profile standards proposals on top of SRS-20:
 
-1.  [Polymath's ST-20 Token](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/ST20)
-2.  [Harbor's R-Token](https://github.com/tokensoft/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/R-Token)
+1.  [Polymath's ST-20 Token](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/ST20)
+2.  [Harbor's R-Token](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/R-Token)
 3.  Delaware General Corporations Law (DGCL) ERC-884 Token - Coming Soon
