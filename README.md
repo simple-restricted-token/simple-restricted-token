@@ -8,6 +8,8 @@ Tokens leveraging the standard are best implemented by composing said contracts,
 
 Read the [EIP draft](https://github.com/simple-restricted-token/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
 
+_You will notice the standard being referred to as **SRS-20** throughout the document. This is for convenience purposes only and is in no way an attempt to brand, copyright, or market the standard._
+
 ## The Standard
 The standard builds on ERC-20's interface, adding two functions:
 ```solidity
