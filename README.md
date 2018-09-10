@@ -2,7 +2,7 @@
 
 An easily extendable standard for issuing tokens with transfer restrictions.  
 
-Extension of the standard lends to writing small, reusable contracts that are responsible for enforcing a single transfer restriction pattern.
+Extension of the standard lends to writing _small_, _reusable_ smart contracts that are responsible for enforcing a single transfer restriction pattern.
 
 Tokens leveraging the standard are best implemented by composing said contracts, as demonstrated in the [examples](#examples) section.  
 
@@ -29,7 +29,8 @@ contract SRS20 is ERC20 {
 ### Common Restricted Tokens
 
 Below are several common transfer restriction patterns implemented on SRS-20.  
-These contracts are fully composable with each other; inherit from one or many of them to build out a bespoke restricted token contract.
+
+These contracts are fully composable with each other. Inherit from one or several to build out a bespoke restricted token contract.
 
 1.  [Account Ownership Percentage](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/ownership-percentage)
 2.  Account Holding Periods - Coming Soon
