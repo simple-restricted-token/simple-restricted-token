@@ -2,9 +2,9 @@
 
 An easily extendable standard for issuing tokens with transfer restrictions.  
 
-Extension of the standard lends to writing _small_, _reusable_ smart contracts that are responsible for enforcing a single transfer restriction pattern.
+Use of the standard lends to writing _small_, _reusable_ smart contracts that are responsible for enforcing a single transfer restriction pattern.
 
-Tokens leveraging the standard are best implemented by composing said contracts, as demonstrated in the [examples](#examples) section.  
+Tokens implementing the standard are best constructed by composing said restrictions through multiple contract inheritance.
 
 Read the [EIP draft](https://github.com/simple-restricted-token/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
 
