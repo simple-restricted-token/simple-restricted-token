@@ -1,12 +1,17 @@
-# SRS-20: Simple Restricted Token Standard
+# Simple Restricted Token Standard
 
-SRS-20 is an easily extendable standard for issuing tokens with transfer restrictions.  
+An easily extendable standard for issuing tokens with transfer restrictions.  
+
+Extension of the standard lends to writing small, reusable contracts that are responsible for enforcing a single transfer restriction pattern.
+
+Tokens leveraging the standard are best implemented by composing said contracts, as demonstrated in the [examples](#examples) section.  
+
 Read the [EIP draft](https://github.com/simple-restricted-token/simple-restricted-token-standard/blob/master/eip-draft_simple_restr_token.md) to learn more.
 
 ## The Standard
-The SRS-20 standard builds on ERC-20's interface, adding two functions:
+The standard builds on ERC-20's interface, adding two functions:
 ```solidity
-// The SRS-20 Interface
+// The Simple Restricted Token Standard Interface
 
 contract SRS20 is ERC20 {
   // returns a restriction code, where 0 is reserved for success
@@ -21,7 +26,8 @@ contract SRS20 is ERC20 {
 
 ### Common Restricted Tokens
 
-Several common transfer restriction patterns implemented on SRS-20:
+Below are several common transfer restriction patterns implemented on SRS-20.  
+These contracts are fully composable with each other; inherit from one or many of them to build out a bespoke restricted token contract.
 
 1.  [Account Ownership Percentage](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/ownership-percentage)
 2.  Account Holding Periods - Coming Soon
