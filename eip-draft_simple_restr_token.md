@@ -24,7 +24,7 @@ _You will notice the standard being referred to as **SRS-20** throughout the doc
 
 <!--A short (~200 word) description of the technical issue being addressed.-->
 
-Current ERC token standards have provided the community with a platform on which we have been able to develop a broad economy that is focused on building Ethereum application that interface with the real world. As these applications mature into the real world they begin to interface with corporate governance requirements as well as regulatory requirements. This interface must not only be able to interface with corporate and regulatory requirements but also with the technology platforms underpinning the associated businesses. This is a simple and interoperable standard that can very simply integrate into wallets, exchanges, and issuers.
+Current ERC token standards have provided the community with a platform on which to develop a decentralized economy that is focused on building Ethereum applications for the real world. As these applications mature and face consumer adoption, they begin to interface with corporate governance requirements as well as regulations. They must not only be able to meet corporate and regulatory requirements but must also be able to integrate with technology platforms underpinning their associated businesses. What follows is a simple and extendable standard that seeks to ease the burden of integration for wallets, exchanges, and issuers.
 
 ## Motivation
 
