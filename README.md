@@ -33,7 +33,7 @@ Below are several common transfer restriction patterns implemented on SRS-20.
 These contracts are fully composable with each other. Inherit from one or several to build out a bespoke restricted token contract.
 
 1.  [Account Ownership Percentage](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/ownership-percentage)
-2.  Account Holding Periods - Coming Soon
+2.  Account Holding Periods - WIP
 3.  [Number of Accounts](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/number-of-accounts)
 4.  [Account Whitelists](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/whitelists)
 5.  [Token Divisibility](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/divisibility)
@@ -44,4 +44,4 @@ We have included example implementations of the following high-profile standards
 
 1.  [Polymath's ST-20 Token](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/ST20)
 2.  [Harbor's R-Token](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/R-Token)
-3.  Delaware General Corporations Law (DGCL) ERC-884 Token - Coming Soon
+3.  Delaware General Corporations Law (DGCL) ERC-884 Token - WIP
