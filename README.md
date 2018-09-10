@@ -12,18 +12,18 @@ Use of the standard lends to writing _small_, _reusable_ smart contracts that ar
 Tokens implementing the standard are best constructed by composing said restrictions through multiple contract inheritance.
 
 ### For Lawyers
+You may have been seeking a way for your issuers to enforce investor limits, control flowback between US and non-US investors, or other similar restrictions.  
 
-You may have been seeking to find a way for you issuers to enforce investor limits, control flowback between US and non-US investors, and other similar restrictions. This standard provides an avenue by which a technically capable team of engineers can meet those requirements.
+The standard provides an avenue by which a team of capable engineers may meet those requirements.
 
 ### For Issuers
-
-Your counsel may have asked you questions such as:
+Your counsel may have asked you questions similar to the following:
 
 * "How can we limit the number of token holders to 2,000 persons or less?"
 * "How can we prevent flowback from non-US token holders to US token holders?"
 * "What if a sanctioned persons gets a hold of the token? Can you take it away?"
 
-This standard was created as a means of better responding to these questions. While this token standard does not inherently enable compliance, it does provide the tools necessary to comply with requirements as put forth by counsel. 
+While this standard does not inherently enable compliance, it does provide the tools necessary to comply with requirements as put forth by counsel.
 
 ## The Standard
 The standard builds on ERC-20's interface, adding two functions:
