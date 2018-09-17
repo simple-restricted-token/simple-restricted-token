@@ -28,7 +28,7 @@ Current ERC token standards have provided the community with a platform on which
 
 <!--The motivation is critical for EIPs that want to change the Ethereum protocol. It should clearly explain why the existing protocol specification is inadequate to address the problem that the EIP solves. EIP submissions without sufficient motivation may be rejected outright.-->
 
-Current regulatory and corporate requirements require that tokens with association to legal entities follow regulatory and corporate governance requirements. Current implementations that seek to solve this problem have yet to meet practical implementation requirements. Regulatory and corporate governance requirements manifest in the form of restrictions placed on a base ERC-20 token.
+Token issuers need a way to restrict transfers of ERC-20 tokens to be compliant with securities laws and other contractual obligations. Current implementations do not address these requirements.
 
 A few emergent examples:
 
