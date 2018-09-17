@@ -18,8 +18,6 @@ created: 2018-07-27
 
 A simple and interoperable standard for issuing tokens with transfer restrictions. The following draws on input from top issuers, law firms, relevant US regulatory bodies, and exchanges.  
 
-_You will notice the standard being referred to as **SRS-20** throughout the document. This is for convenience purposes only and is in no way an attempt to brand, copyright, or market the standard._
-
 ## Abstract
 
 <!--A short (~200 word) description of the technical issue being addressed.-->
@@ -64,9 +62,9 @@ contract ERC20 {
   event Transfer(address indexed from, address indexed to, uint256 value);
 }
 ```
-The SRS-20 standard builds on ERC-20's interface, adding two functions:
+The ERC-1404 standard builds on ERC-20's interface, adding two functions:
 ```solidity
-contract SRS20 is ERC20 {
+contract ERC1404 is ERC20 {
   function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);
   function messageForTransferRestriction (uint8 restrictionCode) public view returns (string);
 }
@@ -91,7 +89,7 @@ The standard proposes two functions and an event on top of the ERC-20 standard. 
 
 <!--All EIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The EIP must explain how the author proposes to deal with these incompatibilities. EIP submissions without a sufficient backwards compatibility treatise may be rejected outright.-->
 
-By design SRS-20 is fully backwards compatible with ERC-20.  
+By design ERC-1404 is fully backwards compatible with ERC-20.  
 Some examples of how it may be integrated with common types of restricted tokens may be found [here](https://github.com/simple-restricted-token/simple-restricted-token-standard#readme).
 
 ## Test Cases & Implementation
@@ -101,7 +99,7 @@ Some examples of how it may be integrated with common types of restricted tokens
 <!--The implementations must be completed before any EIP is given status "Final", but it need not be completed before the EIP is accepted. While there is merit to the approach of reaching consensus on the specification and rationale before writing code, the principle of "rough consensus and running code" is still useful when it comes to resolving many discussions of API details.-->
 
 See the reference implementation and tests [here](https://github.com/simple-restricted-token/reference-implementation#readme).  
-See some examples of common usage patterns for SRS-20 [here](https://github.com/simple-restricted-token/simple-restricted-token-standard#readme).
+See some examples of common usage patterns for ERC-1404 [here](https://github.com/simple-restricted-token/simple-restricted-token-standard#readme).
 
 ## Copyright
 

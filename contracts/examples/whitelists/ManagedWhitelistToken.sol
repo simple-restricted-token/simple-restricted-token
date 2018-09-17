@@ -1,8 +1,8 @@
 pragma solidity ^0.4.24;
 import "./ManagedWhitelist.sol";
-import "../../token/SRS20/MessagedSRS20.sol";
+import "../../token/ERC1404/MEssagedERC1404.sol";
 
-contract ManagedWhitelistToken is MessagedSRS20, ManagedWhitelist {
+contract ManagedWhitelistToken is MEssagedERC1404, ManagedWhitelist {
     uint8 public SEND_NOT_ALLOWED_CODE;
     uint8 public RECEIVE_NOT_ALLOWED_CODE;
     string public constant SEND_NOT_ALLOWED_ERROR = "ILLEGAL_TRANSFER_SENDING_ACCOUNT_NOT_WHITELISTED";

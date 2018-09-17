@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 import "./MaxOwnershipStakeToken.sol";
 
-/// @title SRS-20 that limits the ownership stake individual accounts may hold
+/// @title ERC-1404 that limits the ownership stake individual accounts may hold
 contract IndividualOwnershipStakeToken is MaxOwnershipStakeToken {
     uint8 public INDIVIDUAL_MAX_OWNERSHIP_STAKE_CODE;
     mapping(address => bool) public individualAssignedMaxPercentOwnership;

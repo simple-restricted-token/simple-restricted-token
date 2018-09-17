@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 import "zeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
-contract SRS20 is ERC20 {
+contract ERC1404 is ERC20 {
     /// @notice Detects if a transfer will be reverted and if so returns an appropriate reference code
     /// @param from Sending address
     /// @param to Receiving address

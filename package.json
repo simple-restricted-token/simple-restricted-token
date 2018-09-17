@@ -1,7 +1,7 @@
 {
   "name": "@tokensoft/simple-restricted-token-standard",
   "version": "0.0.0",
-  "description": "SRS-20 is an easily extendable standard for issuing tokens with transfer restrictions.",
+  "description": "ERC-1404 is an easily extendable standard for issuing tokens with transfer restrictions.",
   "scripts": {
     "test": "truffle test",
     "test:watch": "nodemon --exec \"npm run test\"",
