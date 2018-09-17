@@ -1,10 +1,10 @@
 pragma solidity ^0.4.24;
 import "./IST20.sol";
-import "../SRS20/SimpleRestrictedToken.sol";
+import "../ERC1404/SimpleRestrictedToken.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
-/// @title Reference implementation for ST-20 compliant token on top of SRS-20
+/// @title Reference implementation for ST-20 compliant token on top of ERC-1404
 contract ST20Token is IST20, SimpleRestrictedToken, Ownable {
     using SafeMath for uint256;
     
