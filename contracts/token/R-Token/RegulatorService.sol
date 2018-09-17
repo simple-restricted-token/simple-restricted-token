@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 
-/// @notice Standard interface for `RegulatorService`s extended for SRS-20 compatability
+/// @notice Standard interface for `RegulatorService`s extended for ERC-1404 compatability
 contract RegulatorService {
 
   /*

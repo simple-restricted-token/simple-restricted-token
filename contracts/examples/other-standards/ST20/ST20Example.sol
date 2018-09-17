@@ -1,9 +1,9 @@
 pragma solidity ^0.4.24;
 import "../../../token/ST20/ST20Token.sol"; 
-import "../../../token/SRS20/MessagedSRS20.sol";
+import "../../../token/ERC1404/MEssagedERC1404.sol";
  
-/// @title Example of an ST-20 compliant token built on top of SRS-20
-contract ST20Example is ST20Token, MessagedSRS20 {
+/// @title Example of an ST-20 compliant token built on top of ERC-1404
+contract ST20Example is ST20Token, MEssagedERC1404 {
     uint8 public ZERO_ADDRESS_RESTRICTION_CODE;
     string public constant ZERO_ADDRESS_RESTRICTION_MESSAGE = "ILLEGAL_TRANSFER_TO_ZERO_ADDRESS";
     

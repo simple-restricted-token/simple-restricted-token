@@ -4,7 +4,7 @@ An easily extendable standard for issuing tokens with transfer restrictions.
 
 Read [ERC-1404](https://github.com/ethereum/EIPs/issues/1404) to learn more.
 
-_You will notice the standard being referred to as **SRS-20** throughout the document. This is for convenience purposes only and is in no way an attempt to brand, copyright, or market the standard._
+_You will notice the standard being referred to as **ERC-1404** throughout the document. This is for convenience purposes only and is in no way an attempt to brand, copyright, or market the standard._
 
 ### For Developers
 Use of the standard lends to writing _small_, _reusable_ smart contracts that are responsible for enforcing a single transfer restriction pattern.
@@ -30,7 +30,7 @@ The standard builds on ERC-20's interface, adding two functions:
 ```solidity
 // The Simple Restricted Token Standard Interface
 
-contract SRS20 is ERC20 {
+contract ERC1404 is ERC20 {
   // returns a restriction code, where 0 is reserved for success
   function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);
 
@@ -43,7 +43,7 @@ contract SRS20 is ERC20 {
 
 ### Common Restricted Tokens
 
-Below are several common transfer restriction patterns implemented on SRS-20.  
+Below are several common transfer restriction patterns implemented on ERC-1404.  
 
 These contracts are fully composable with each other. Inherit from one or several to build out a bespoke restricted token contract.
 
@@ -55,7 +55,7 @@ These contracts are fully composable with each other. Inherit from one or severa
 
 ### Other Standards
 
-We have included example implementations of the following high-profile standards proposals on top of SRS-20:
+We have included example implementations of the following high-profile standards proposals on top of ERC-1404:
 
 1.  [Polymath's ST-20 Token](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/ST20)
 2.  [Harbor's R-Token](https://github.com/simple-restricted-token/simple-restricted-token-standard/tree/master/contracts/examples/other-standards/R-Token)
