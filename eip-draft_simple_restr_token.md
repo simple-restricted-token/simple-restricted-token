@@ -18,8 +18,6 @@ created: 2018-07-27
 
 A simple and interoperable standard for issuing tokens with transfer restrictions. The following draws on input from top issuers, law firms, relevant US regulatory bodies, and exchanges.  
 
-_You will notice the standard being referred to as **ERC-1404** throughout the document. This is for convenience purposes only and is in no way an attempt to brand, copyright, or market the standard._
-
 ## Abstract
 
 <!--A short (~200 word) description of the technical issue being addressed.-->

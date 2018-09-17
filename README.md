@@ -4,8 +4,6 @@ An easily extendable standard for issuing tokens with transfer restrictions.
 
 Read [ERC-1404](https://github.com/ethereum/EIPs/issues/1404) to learn more.
 
-_You will notice the standard being referred to as **ERC-1404** throughout the document. This is for convenience purposes only and is in no way an attempt to brand, copyright, or market the standard._
-
 ### For Developers
 Use of the standard lends to writing _small_, _reusable_ smart contracts that are responsible for enforcing a single transfer restriction pattern.
 
