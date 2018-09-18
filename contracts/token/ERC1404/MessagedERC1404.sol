@@ -4,7 +4,7 @@ import "./SimpleRestrictedToken.sol";
 
 /// @title ERC-1404 implementation with built-in message and code management solution
 /// @dev Inherit from this contract to implement your own ERC-1404 token
-contract MEssagedERC1404 is SimpleRestrictedToken {
+contract MessagedERC1404 is SimpleRestrictedToken {
     using MessagesAndCodes for MessagesAndCodes.Data;
     MessagesAndCodes.Data internal messagesAndCodes;
 

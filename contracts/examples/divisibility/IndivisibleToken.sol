@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
-import "../../token/ERC1404/MEssagedERC1404.sol";
+import "../../token/ERC1404/MessagedERC1404.sol";
 
-contract IndivisibleToken is MEssagedERC1404 {
+contract IndivisibleToken is MessagedERC1404 {
     uint8 public decimals;
     uint8 public FRACTION_TRANSFER_CODE;
     string public constant FRACTION_TRANSFER_ERROR = "ILLEGAL_TRANSFER_VALUE_CANNOT_BE_A_FRACTION";

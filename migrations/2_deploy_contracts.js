@@ -10,7 +10,7 @@ var ST20ExampleMock = artifacts.require('./mocks/ST20ExampleMock')
 module.exports = function (deployer) {
   deployer.then(async () => {
     try {
-      // deploy and link MessagesAndCodes lib for MEssagedERC1404's
+      // deploy and link MessagesAndCodes lib for MessagedERC1404's
       await deployer.deploy(MessagesAndCodes)
       await deployer.link(MessagesAndCodes, [
         IndivisibleTokenMock,

@@ -1,10 +1,10 @@
 pragma solidity ^0.4.24;
-import "../../token/ERC1404/MEssagedERC1404.sol";
+import "../../token/ERC1404/MessagedERC1404.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 /// @title ERC-1404 that limits the ownership stake all accounts may hold
-contract MaxOwnershipStakeToken is MEssagedERC1404, Ownable {
+contract MaxOwnershipStakeToken is MessagedERC1404, Ownable {
     using SafeMath for uint256;
     uint8 public MAX_OWNERSHIP_STAKE_CODE;
     uint256 public maxPercentOwnershipTimesOneThousand;
