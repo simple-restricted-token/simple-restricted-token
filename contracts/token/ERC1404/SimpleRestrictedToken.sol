@@ -1,10 +1,10 @@
 pragma solidity ^0.4.24;
-import "./SRS20.sol";
+import "./ERC1404.sol";
 import "zeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
 
-/// @title Extendable reference implementation for the SRS-20 token
-/// @dev Inherit from this contract to implement your own SRS-20 token
-contract SimpleRestrictedToken is SRS20, StandardToken {
+/// @title Extendable reference implementation for the ERC-1404 token
+/// @dev Inherit from this contract to implement your own ERC-1404 token
+contract SimpleRestrictedToken is ERC1404, StandardToken {
     uint8 public constant SUCCESS_CODE = 0;
     string public constant SUCCESS_MESSAGE = "SUCCESS";
 

@@ -2,9 +2,9 @@ pragma solidity ^0.4.24;
 import "./MessagesAndCodes.sol";
 import "./SimpleRestrictedToken.sol";
 
-/// @title SRS-20 implementation with built-in message and code management solution
-/// @dev Inherit from this contract to implement your own SRS-20 token
-contract MessagedSRS20 is SimpleRestrictedToken {
+/// @title ERC-1404 implementation with built-in message and code management solution
+/// @dev Inherit from this contract to implement your own ERC-1404 token
+contract MessagedERC1404 is SimpleRestrictedToken {
     using MessagesAndCodes for MessagesAndCodes.Data;
     MessagesAndCodes.Data internal messagesAndCodes;
 

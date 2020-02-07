@@ -1,11 +1,11 @@
 
 pragma solidity ^0.4.18;
 
-import "../../../token/SRS20/SRS20.sol";
+import "../../../token/ERC1404/ERC1404.sol";
 import "../../../token/R-Token/RegulatedToken.sol";
 import '../../../token/R-Token/ServiceRegistry.sol';
 
-contract RegulatedTokenExample is SRS20, RegulatedToken {
+contract RegulatedTokenExample is ERC1404, RegulatedToken {
     function RegulatedTokenExample(ServiceRegistry _registry, string _name, string _symbol) public
         RegulatedToken(_registry, _name, _symbol)
     {
@@ -13,7 +13,7 @@ contract RegulatedTokenExample is SRS20, RegulatedToken {
     }
 
    /**
-    * @notice Implementing detectTransferRestriction makes this token SRS-20 compatible
+    * @notice Implementing detectTransferRestriction makes this token ERC-1404 compatible
     * 
     * @dev Notice in the call to _service.check(), the 2nd argument is address 0.
     *      This "spender" parameter is unused in Harbor's own R-Token implementation
@@ -30,7 +30,7 @@ contract RegulatedTokenExample is SRS20, RegulatedToken {
     }
 
    /**
-    * @notice Implementing messageForTransferRestriction makes this token SRS-20 compatible
+    * @notice Implementing messageForTransferRestriction makes this token ERC-1404 compatible
     *
     * @dev The RegulatorService contract must implement the function messageforReason in this implementation
     * 

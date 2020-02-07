@@ -1,8 +1,8 @@
 pragma solidity ^0.4.24;
-import "../../token/SRS20/MessagedSRS20.sol";
+import "../../token/ERC1404/MessagedERC1404.sol";
 import "zeppelin-solidity/contracts/access/Whitelist.sol";
 
-contract BasicWhitelistToken is MessagedSRS20, Whitelist {
+contract BasicWhitelistToken is MessagedERC1404, Whitelist {
     uint8 public NON_WHITELIST_CODE;
     string public constant NON_WHITELIST_ERROR = "ILLEGAL_TRANSFER_TO_NON_WHITELISTED_ADDRESS";
     
