@@ -14,5 +14,5 @@ contract ERC1404 is ERC20 {
     /// @param restrictionCode Identifier for looking up a message
     /// @return Text showing the restriction's reasoning
     /// @dev Overwrite with your custom message and restrictionCode handling
-    function messageForTransferRestriction (uint8 restrictionCode) public view returns (string);
+    function messageForTransferRestriction (uint8 restrictionCode) public view returns (string memory);
 }
