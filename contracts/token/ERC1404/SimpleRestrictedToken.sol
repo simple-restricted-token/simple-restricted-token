@@ -37,7 +37,7 @@ contract SimpleRestrictedToken is ERC1404, StandardToken {
         notRestricted(msg.sender, to, value)
         returns (bool success)
     {
-        success = super.transfer(to, value);
+        return super.transfer(to, value);
     }
 
     function transferFrom (address from, address to, uint256 value)
@@ -45,6 +45,6 @@ contract SimpleRestrictedToken is ERC1404, StandardToken {
         notRestricted(from, to, value)
         returns (bool success)
     {
-        success = super.transferFrom(from, to, value);
+        return super.transferFrom(from, to, value);
     }
 }
