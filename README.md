@@ -32,7 +32,7 @@ contract ERC1404 is ERC20 {
   // returns a restriction code, where 0 is reserved for success
   function detectTransferRestriction (address from, address to, uint256 value) public view returns (uint8);
 
-  // returns a messsage string -- a human-readable message for the passed restriction code 
+  // returns a message string -- a human-readable message for the passed restriction code 
   function messageForTransferRestriction (uint8 restrictionCode) public view returns (string);
 }
 ```
